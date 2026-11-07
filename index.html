@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>¿Flota o se hunde? · Formulación y Evaluación de Proyectos de IA · 7 de Noviembre, 2026</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/base.css">
+</head>
+<body>
+<a class="saltar" href="#lienzo">Saltar al contenido</a>
+<header class="cabecera" id="cabecera">
+  <a class="marca" href="#portada" data-ir="portada">Sebastián Vivas<span class="marca-extra"> · Proyectos de IA</span></a>
+  <nav class="cab-der" aria-label="Navegación">
+    <button class="enlace" id="abrir-indice" type="button" aria-controls="indice">Índice</button>
+    <a class="boton" href="#tanque" data-ir="tanque">El Tanque</a>
+  </nav>
+</header>
+
+<nav class="indice" id="indice" hidden aria-label="Índice de la clase">
+  <h2>La clase de hoy</h2>
+  <ol></ol>
+  <button class="boton cerrar" type="button">Cerrar</button>
+</nav>
+
+<div class="crono" id="crono" hidden role="dialog" aria-modal="true" aria-labelledby="crono-titulo">
+  <p class="crono-titulo" id="crono-titulo"></p>
+  <p class="crono-reloj" id="crono-reloj">00:00</p>
+  <div class="crono-pie">
+    <p class="crono-nota" id="crono-nota"></p>
+    <div class="crono-acciones">
+      <button class="boton" id="crono-pausa" type="button">Pausar</button>
+      <button class="boton" id="crono-mas" type="button">Cinco minutos más</button>
+      <button class="boton" id="crono-minimizar" type="button">Minimizar</button>
+      <button class="boton" id="crono-cerrar" type="button">Terminar</button>
+    </div>
+  </div>
+</div>
+<button class="crono-mini" id="crono-mini" type="button" hidden aria-label="Volver al cronómetro"><span id="crono-mini-reloj">00:00</span><small id="crono-mini-titulo"></small></button>
+
+<main id="lienzo"></main>
+
+<footer class="pie" id="pie">
+  <h2 id="creditos-titulo">Imágenes y créditos</h2>
+  <ul id="creditos"></ul>
+  <p>Formulación y Evaluación de Proyectos de IA · Universidad Autónoma del Caribe · Especialización en Inteligencia Artificial · Sábado 7 de Noviembre, 2026. Los datos de las demos y figuras son sintéticos o ilustrativos; los casos y cifras de los ejemplos vienen del material del curso.</p>
+</footer>
+<div class="progreso" id="progreso"></div>
+
+<script src="js/vendor/gsap.min.js"></script>
+<script src="js/vendor/ScrollTrigger.min.js"></script>
+<script src="js/vendor/lenis.min.js"></script>
+<script src="js/demos-ia.js"></script>
+<script src="js/clase.js"></script>
+<!-- Secciones en orden de la clase (cada archivo se registra solo) -->
+<script src="secciones/00-apertura.js"></script>
+<script src="secciones/10-mercado.js"></script>
+<script src="secciones/20-modelos.js"></script>
+<script src="secciones/25-casos.js"></script>
+<script src="secciones/30-viabilidad.js"></script>
+<script src="secciones/40-evaluacion.js"></script>
+<script src="secciones/45-riesgos.js"></script>
+<script src="secciones/55-etica.js"></script>
+<script src="secciones/60-entregables.js"></script>
+<script src="secciones/70-implementacion.js"></script>
+<script src="secciones/80-tanque.js"></script>
+<script src="secciones/85-tarea.js"></script>
+<script src="secciones/95-cierre.js"></script>
+<script src="js/nucleo.js"></script>
+</body>
+</html>

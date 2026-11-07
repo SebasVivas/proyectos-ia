@@ -1,0 +1,40 @@
+[
+ {
+  "file": "assets/gulf-stream.jpg",
+  "media": "image",
+  "ref": "commons:153005",
+  "title": "The Gulf Stream",
+  "creator": "Winslow Homer",
+  "creatorUrl": null,
+  "date": "1899",
+  "license": "public domain",
+  "licenseCode": "pd",
+  "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+  "creditRequired": false,
+  "page": "https://commons.wikimedia.org/wiki/File:Winslow_Homer_-_The_Gulf_Stream_-_Metropolitan_Museum_of_Art.jpg",
+  "via": "Wikimedia Commons",
+  "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Winslow_Homer_-_The_Gulf_Stream_-_Metropolitan_Museum_of_Art.jpg/3840px-Winslow_Homer_-_The_Gulf_Stream_-_Metropolitan_Museum_of_Art.jpg",
+  "width": 3840,
+  "height": 2309,
+  "bytes": 3492976,
+  "credit": "\"The Gulf Stream\" by Winslow Homer, public domain, via Wikimedia Commons",
+  "notes": [],
+  "saved": "2026-11-06T06:11:33.138Z",
+  "treatment": "reducido a 2400 px, sin cambios de color"
+ },
+ {
+  "file": "assets/tiburon.webm",
+  "alternate": "assets/tiburon.mp4",
+  "poster": "assets/tiburon-poster.jpg",
+  "media": "video",
+  "ref": "commons:72743334",
+  "title": "Blacktip reef shark in Shark Bay Koh Tao",
+  "creator": "MichaelWhi",
+  "date": "2018-09-14",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Blacktip_reef_shark_in_Shark_Bay_Koh_Tao.webm",
+  "treatment": "recortado (franja superior), 30 fps, mudo, pasado a dos tonos de azul (#06182b / #a9c9e6); la versión adaptada queda bajo CC BY-SA 3.0",
+  "credit": "\"Blacktip reef shark in Shark Bay Koh Tao\" by MichaelWhi, CC BY-SA 3.0, via Wikimedia Commons"
+ }
+]

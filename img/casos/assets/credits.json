@@ -1,0 +1,74 @@
+[
+ {
+  "file": "assets/nueva-granada-1858.jpg",
+  "media": "image",
+  "ref": "commons:199679477",
+  "title": "Mapa de la república de la Nueva Granada, 1858",
+  "creator": "Joaquín Acosta & José María Samper",
+  "creatorUrl": null,
+  "date": "1858",
+  "license": "public domain",
+  "licenseCode": "pd",
+  "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+  "creditRequired": false,
+  "page": "https://commons.wikimedia.org/wiki/File:Mapa_de_la_rep%C3%BAblica_de_la_Nueva_Granada,_1858.jpg",
+  "via": "Wikimedia Commons",
+  "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Mapa_de_la_rep%C3%BAblica_de_la_Nueva_Granada%2C_1858.jpg/3840px-Mapa_de_la_rep%C3%BAblica_de_la_Nueva_Granada%2C_1858.jpg",
+  "width": 3840,
+  "height": 2724,
+  "bytes": 2827116,
+  "credit": "\"Mapa de la república de la Nueva Granada, 1858\" by Joaquín Acosta & José María Samper, public domain, via Wikimedia Commons",
+  "notes": [
+   "Recorte del territorio de la Nueva Granada, convertido a dos tintas (verde mar sobre papel)"
+  ],
+  "saved": "2026-11-06T06:19:36.069Z"
+ },
+ {
+  "file": "assets/carta-esferica-1805.jpg",
+  "media": "image",
+  "ref": "openverse:3eaea8f8-4e1a-4cb5-b336-875e3f804230",
+  "title": "Carta esférica del Mar de las Antillas y de las Costas de Tierra Firme, desde la Isla de Trinidad, hasta el Golfo de Honduras [Material cartográfico]",
+  "creator": "Dirección Hidrográfica (Madrid)",
+  "creatorUrl": null,
+  "date": "1805",
+  "license": "public domain",
+  "licenseCode": "pd",
+  "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+  "creditRequired": false,
+  "page": "https://bibliotecadigital.rah.es/es/consulta/registro.do?id=29083",
+  "via": "Europeana",
+  "image": "https://bibliotecadigital.rah.es/es/catalogo_imagenes/imagen_id.do?idImagen=10294315",
+  "width": 5368,
+  "height": 3728,
+  "bytes": 2159691,
+  "credit": "\"Carta esférica del Mar de las Antillas y de las Costas de Tierra Firme, desde la Isla de…\", public domain, via Europeana",
+  "notes": [
+   "Recorte de la costa del Caribe colombiano, convertido a dos tintas (verde mar sobre papel)"
+  ],
+  "saved": "2026-11-06T06:19:42.559Z"
+ },
+ {
+  "file": "assets/magdalena-1868.jpg",
+  "media": "image",
+  "ref": "commons:78082464",
+  "title": "Navegacion Del Rio Magdalena Por Vapor",
+  "creator": "Parédes, Demetrio ; Dornheim, C.",
+  "creatorUrl": null,
+  "date": "1868",
+  "license": "CC0",
+  "licenseCode": "cc0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "creditRequired": false,
+  "page": "https://commons.wikimedia.org/wiki/File:Navegacion_Del_Rio_Magdalena_Por_Vapor.jpg",
+  "via": "Wikimedia Commons",
+  "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Navegacion_Del_Rio_Magdalena_Por_Vapor.jpg/3840px-Navegacion_Del_Rio_Magdalena_Por_Vapor.jpg",
+  "width": 3840,
+  "height": 3081,
+  "bytes": 3007456,
+  "credit": "\"Navegacion Del Rio Magdalena Por Vapor\" by Parédes, Demetrio ; Dornheim, C., CC0, via Wikimedia Commons",
+  "notes": [
+   "Recorte del mapa del río, la tabla de distancias, el itinerario y la tarifa de fletes; convertido a dos tintas (verde mar sobre papel)"
+  ],
+  "saved": "2026-11-06T06:36:19.446Z"
+ }
+]

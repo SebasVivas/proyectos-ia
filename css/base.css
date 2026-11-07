@@ -1,0 +1,116 @@
+@import url("../fonts/fuentes.css");
+
+/* ===================================================================
+   Base del sitio: tokens, tipografía, botón, cabecera, capítulos,
+   índice, cronómetro, pie. Cada sección trae su propio CSS en su
+   archivo de secciones/ y lo prefija con .s-<acto>.
+   =================================================================== */
+:root{
+  --blanco:#ffffff; --negro:#000000; --gris:#c5c5c5; --menta:#a7ff9c; --naranja:#ff6831;
+  --sumergida:#3d1203;
+  --step-small:clamp(0.8125rem,0.79rem + 0.1vw,0.875rem);   /* 13–14 px: solo notas */
+  --step-body:clamp(1.0625rem,1rem + 0.25vw,1.1875rem);     /* 17–19 px: texto */
+  --step-lead:clamp(1.25rem,1.1rem + 0.7vw,1.625rem);       /* 20–26 px: entradillas */
+  --step-head:clamp(2rem,1.3rem + 3.2vw,4rem);              /* 32–64 px: títulos */
+  --step-display:clamp(4.5rem,8.6vw,8.5rem);                /* 72–136 px: titulares */
+  --margen:4vw; --gap:24px;
+  --f-display:"League Spartan",system-ui,sans-serif;
+  --f-texto:"Figtree",system-ui,sans-serif;
+  --h-ink:#000; --h-btn-bg:var(--menta); --h-btn-ink:#000;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html{-webkit-font-smoothing:antialiased;overflow-anchor:none;background:#fff}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+body{font-family:var(--f-texto);font-size:var(--step-body);line-height:1.5;color:#000;background:#fff;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--f-display);font-weight:700;letter-spacing:-.04em;line-height:.88}
+a{color:inherit}
+img,video,canvas,svg{display:block;max-width:100%}
+button{font:inherit;color:inherit}
+.mask{display:block;overflow:hidden;padding-bottom:.06em}
+.in{display:inline-block;will-change:transform}
+.solo-lector{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.saltar{position:fixed;left:var(--margen);top:-80px;z-index:400;background:#000;color:#fff;padding:12px 20px;font-weight:600;text-decoration:none}
+.saltar:focus{top:16px}
+
+/* Botón: una sola forma en toda la página */
+.boton{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 24px;background:var(--menta);color:#000;border:2px solid #000;font-family:var(--f-texto);font-weight:600;font-size:var(--step-body);line-height:1;text-decoration:none;cursor:pointer;transition:translate .2s,background-color .3s,color .3s,border-color .3s}
+/* hover con la propiedad translate (no transform) para no chocar con animaciones de GSAP */
+.boton:hover{translate:0 -2px}
+.boton:active{translate:0 1px}
+.boton:focus-visible,.cabecera a:focus-visible,.cabecera button:focus-visible{outline:3px solid currentColor;outline-offset:4px}
+
+/* Cabecera: toma la tinta del capítulo que pasa por debajo */
+.cabecera{position:fixed;top:0;left:0;right:0;z-index:100;height:80px;padding:0 var(--margen);display:flex;align-items:center;justify-content:space-between;color:var(--h-ink);transition:color .3s;pointer-events:none}
+.cabecera > *{pointer-events:auto}
+.marca{font-family:var(--f-display);font-weight:700;font-size:var(--step-lead);letter-spacing:-.03em;text-decoration:none}
+.cab-der{display:flex;align-items:center;gap:32px}
+.cab-der .enlace{position:relative;font-weight:600;text-decoration:none;background:none;border:0;cursor:pointer;font-size:var(--step-body)}
+.cab-der .enlace::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.cab-der .enlace:hover::after{transform:scaleX(1)}
+.cabecera .boton{background:var(--h-btn-bg);color:var(--h-btn-ink);border-color:var(--h-ink)}
+
+#lienzo{position:relative}
+/* Toda sección es posicionada: así la siguiente pinta encima de un .cap fijo y lo tapa al subir */
+section{position:relative}
+.bloque{display:contents}
+.bloque[hidden]{display:none!important}
+
+/* Capítulos que suben como agua: cada .cap es fijo y el siguiente lo tapa */
+.cap{position:sticky;top:0;height:100svh;min-height:640px;overflow:hidden;background:var(--campo);color:var(--tinta);padding:112px var(--margen) 48px}
+.ancla{display:block;height:0}
+.modo-solo .cap{position:relative}
+
+/* Progreso */
+.progreso{position:fixed;left:0;bottom:0;height:6px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:var(--h-ink);z-index:90;pointer-events:none}
+
+/* Índice */
+.indice{position:fixed;inset:0;z-index:200;background:#000;color:#fff;padding:112px var(--margen) 48px;overflow:auto}
+.indice[hidden]{display:none}
+.indice h2{font-size:var(--step-head);margin-bottom:32px}
+.indice ol{list-style:none;columns:3;column-gap:40px}
+.indice li{break-inside:avoid}
+.indice li a{display:block;font-family:var(--f-display);font-weight:700;letter-spacing:-.03em;font-size:var(--step-lead);line-height:1.1;padding:9px 0;text-decoration:none;transition:color .2s,translate .2s}
+.indice li a:hover,.indice li a:focus-visible{color:var(--menta);translate:8px 0;outline:none}
+.indice li a small{display:block;font-family:var(--f-texto);font-weight:400;letter-spacing:0;font-size:var(--step-small);color:#fff;margin-top:4px}
+.indice .cerrar{position:absolute;top:14px;right:var(--margen)}
+
+/* Cronómetro de taller a pantalla completa */
+.crono{position:fixed;inset:0;z-index:300;background:var(--menta);color:#000;display:flex;flex-direction:column;justify-content:space-between;padding:112px var(--margen) 48px;transition:background-color .6s,color .6s}
+.crono[hidden]{display:none}
+.crono-titulo{font-family:var(--f-display);font-weight:700;letter-spacing:-.03em;font-size:var(--step-head);line-height:.95;max-width:22ch}
+.crono-reloj{font-family:var(--f-display);font-weight:700;font-size:min(33vw,58vh);line-height:.8;letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.crono-pie{display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+.crono-acciones{display:flex;gap:12px;flex-wrap:wrap}
+.crono-nota{font-size:var(--step-lead);max-width:36ch}
+.crono.urgente{background:var(--naranja)}
+.crono.fin{background:#000;color:#fff}
+.crono.fin .boton{border-color:#fff}
+/* Cronómetro minimizado: sigue corriendo en la esquina mientras la clase avanza */
+.crono-mini{position:fixed;right:var(--margen);bottom:22px;z-index:150;display:flex;gap:12px;height:58px;padding:0 20px;background:var(--menta);color:#000;border:2px solid #000;font-family:var(--f-display);font-weight:700;font-size:var(--step-lead);letter-spacing:-.02em;font-variant-numeric:tabular-nums;cursor:pointer;align-items:center;transition:translate .2s,background-color .4s,color .4s}
+.crono-mini:hover{translate:0 -2px}
+.crono-mini[hidden]{display:none}
+.crono-mini small{font-family:var(--f-texto);font-weight:600;font-size:var(--step-small);letter-spacing:0;max-width:24ch;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.crono-mini.urgente{background:var(--naranja)}
+.crono-mini.fin{background:#000;color:#fff;border-color:#fff}
+.crono-mini:focus-visible{outline:3px solid #000;outline-offset:4px}
+
+/* Pie y créditos */
+.pie{position:relative;z-index:110;background:#000;color:#fff;padding:96px var(--margen) 48px;font-size:var(--step-small);line-height:1.6}
+.pie h2{font-size:var(--step-lead);letter-spacing:-.02em;margin-bottom:16px}
+.pie ul{list-style:none;columns:2;column-gap:var(--gap)}
+.pie li{break-inside:avoid;margin-bottom:8px}
+.pie p{margin-top:32px;max-width:90ch}
+
+.cabecera .boton{white-space:nowrap}
+@media (max-width:760px){
+  html{overflow-x:hidden}
+  .cab-der{gap:16px}.cab-der .enlace{display:none}
+  .marca .marca-extra{display:none}
+  .cabecera .boton{height:44px;padding:0 16px}
+  .indice ol,.pie ul{columns:1}
+  .cap{padding:96px 20px 32px}
+  #lienzo table{display:block;max-width:100%;overflow-x:auto}
+}

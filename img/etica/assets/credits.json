@@ -1,0 +1,88 @@
+[
+ {
+  "file": "assets/faro-morro-bn.jpg",
+  "media": "image",
+  "ref": "commons:35172956",
+  "title": "Faro de la bahía de Santa Marta 2014-09-05 (2)",
+  "creator": "Jorge Mahecha",
+  "creatorUrl": null,
+  "date": "2014-01-02",
+  "license": "CC BY-SA 3.0",
+  "licenseCode": "by-sa",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "creditRequired": true,
+  "page": "https://commons.wikimedia.org/wiki/File:Faro_de_la_bah%C3%ADa_de_Santa_Marta_2014-09-05_(2).jpg",
+  "via": "Wikimedia Commons",
+  "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/Faro_de_la_bah%C3%ADa_de_Santa_Marta_2014-09-05_%282%29.jpg/3840px-Faro_de_la_bah%C3%ADa_de_Santa_Marta_2014-09-05_%282%29.jpg",
+  "width": 3840,
+  "height": 2880,
+  "bytes": 1711454,
+  "credit": "\"Faro de la bahía de Santa Marta 2014-09-05 (2)\" by Jorge Mahecha, CC BY-SA 3.0, via Wikimedia Commons",
+  "notes": [
+   "Share-alike: an altered version (recoloured, combined with other pictures) must be shared under the same licence."
+  ],
+  "saved": "2026-11-06T06:11:53.534Z",
+  "original": "assets/faro-de-la-bahia-de-santa-marta.jpg",
+  "cambios": "Canal rojo a blanco y negro, niveles, recorte; cielo extendido en negro (apertura) y recorte de la linterna (cita).",
+  "archivos": [
+   "assets/faro-morro-bn.jpg",
+   "assets/faro-linterna-bn.jpg"
+  ]
+ },
+ {
+  "file": "assets/faro-lente-1931.jpg",
+  "media": "image",
+  "ref": "commons:12648012",
+  "title": "Lighthouse lantern (Wonder Book of Engineering Wonders, 1931)",
+  "creator": "Andy Dingley (scanner)",
+  "creatorUrl": null,
+  "date": "1931",
+  "license": "public domain",
+  "licenseCode": "pd",
+  "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+  "creditRequired": false,
+  "page": "https://commons.wikimedia.org/wiki/File:Lighthouse_lantern_(Wonder_Book_of_Engineering_Wonders,_1931).jpg",
+  "via": "Wikimedia Commons",
+  "image": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Lighthouse_lantern_%28Wonder_Book_of_Engineering_Wonders%2C_1931%29.jpg",
+  "width": 1046,
+  "height": 1411,
+  "bytes": 566933,
+  "credit": "\"Lighthouse lantern (Wonder Book of Engineering Wonders, 1931)\" by Andy Dingley (scanner), public domain, via Wikimedia Commons",
+  "notes": [],
+  "saved": "2026-11-06T06:11:54.918Z",
+  "original": "assets/lighthouse-lantern-wonder-book-of-engineering-wonders.jpg",
+  "cambios": "Escala de grises, recorte de bordes del escaneo, niveles.",
+  "archivos": [
+   "assets/faro-lente-1931.jpg"
+  ]
+ },
+ {
+  "file": "assets/morro-silueta-bn.jpg",
+  "media": "image",
+  "ref": "openverse:05e2c600-2c7a-4abb-bbd8-bd2a373246b2",
+  "title": "Bahia de Santa Marta (el morro)",
+  "creator": "Patriarboleda",
+  "creatorUrl": "https://commons.wikimedia.org/w/index.php?title=User:Patriarboleda&action=edit&redlink=1",
+  "date": null,
+  "license": "CC BY-SA 4.0",
+  "licenseCode": "by-sa",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "creditRequired": true,
+  "page": "https://commons.wikimedia.org/w/index.php?curid=46316850",
+  "via": "Wikimedia Commons",
+  "image": "https://upload.wikimedia.org/wikipedia/commons/7/75/Bahia_de_Santa_Marta_%28el_morro%29.jpg",
+  "width": 3264,
+  "height": 2448,
+  "bytes": 1547494,
+  "credit": "\"Bahia de Santa Marta (el morro)\" by Patriarboleda, CC BY-SA 4.0, via Wikimedia Commons",
+  "notes": [
+   "Share-alike: an altered version (recoloured, combined with other pictures) must be shared under the same licence."
+  ],
+  "saved": "2026-11-06T06:11:57.505Z",
+  "original": "assets/bahia-de-santa-marta-el-morro.jpg",
+  "cambios": "Blanco y negro, recorte panorámico, niveles; en la página se multiplica sobre el rojo.",
+  "archivos": [
+   "assets/morro-silueta-bn.jpg"
+  ]
+ }
+]
