@@ -321,7 +321,7 @@ Clase.seccion({
       ${haz("etica-xai-t", "Transparencia y explicabilidad (XAI)")}
       <div class="s-etica-cuerpo">
         <p class="s-etica-afirma">¿Puede el afectado entender por qué el sistema tomó esa decisión?</p>
-        <p class="s-etica-texto">Las técnicas de XAI, como LIME y SHAP, muestran cuánto pesó cada variable en una decisión. Son críticas en crédito, salud y justicia.</p>
+        <p class="s-etica-texto">Las técnicas de XAI (IA explicable), como LIME y SHAP (dos métodos que miden el peso de cada variable), muestran cuánto pesó cada variable en una decisión. Son críticas en crédito, salud y justicia.</p>
       </div>
       <span class="ancla" data-parada="etica-shap"></span>
       <div class="s-etica-demo s-etica-shap">

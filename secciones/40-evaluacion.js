@@ -35,7 +35,7 @@ const CLAUSULAS = [
   { n:"Propiedad intelectual", d:"Derechos sobre el modelo y sobre los datos con que se entrena." },
   { n:"Decisiones automatizadas", d:"Quién responde por lo que decide el sistema." },
   { n:"Regulación sectorial", d:"Salud, finanzas y educación tienen reglas propias." },
-  { n:"Auditoría y explicabilidad", d:"XAI requerida: poder auditar y explicar cada decisión." }
+  { n:"Auditoría y explicabilidad", d:"XAI (IA explicable) requerida: poder auditar y explicar cada decisión." }
 ];
 const FINANZAS = [
   { t:"CAPEX", d:"Inversión inicial: hardware, licencias y desarrollo inicial." },

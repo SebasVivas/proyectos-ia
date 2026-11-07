@@ -49,7 +49,7 @@ const PUERTOS = [
   { f:"30 y 31 de Octubre", t:"Conceptos de IA, gestión de proyectos e identificación del problema.", x:.12, y:.74, arriba:true },
   { f:"6 y 7 de Noviembre", t:"Formulación del proyecto de IA, canvas y datos.", x:.38, y:.5, hoy:true },
   { f:"13 y 14 de Noviembre", t:"Mercado y viabilidad financiera y legal.", x:.63, y:.76, arriba:true },
-  { f:"20 y 21 de Noviembre", t:"Implementación, ética, evaluación final y pitch ejecutivo.", x:.87, y:.5 }
+  { f:"20 y 21 de Noviembre", t:"Implementación, ética, evaluación final y pitch ejecutivo (presentación corta ante directivos).", x:.87, y:.5 }
 ];
 Clase.seccion({
   id:"agenda", orden:2,

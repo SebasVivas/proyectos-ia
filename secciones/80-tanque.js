@@ -8,7 +8,7 @@ Object.entries(AZ).forEach(([n, bg]) => Clase.campo("tanque-" + n, { bg, ink:"#f
 
 const CUADRO = { src:"img/tanque/assets/gulf-stream.jpg", w:2400, h:1443 };
 const PASOS = [
-  { nombre:"Pitch de 3 minutos", corto:"Pitch", texto:"El problema con un número, la solución en una frase y cuánto piden para hacerlo.", detalle:"Detalle: el hombre en el bote.", marca:{ x:.609, y:.398 }, c:{ x:.60, y:.47, s:2.4 } },
+  { nombre:"Pitch de 3 minutos", corto:"Pitch", texto:"Presentación corta de venta: el problema con un número, la solución en una frase y cuánto piden para hacerlo.", detalle:"Detalle: el hombre en el bote.", marca:{ x:.609, y:.398 }, c:{ x:.60, y:.47, s:2.4 } },
   { nombre:"Los tiburones preguntan", corto:"Preguntas", texto:"Sus compañeros atacan desde un ángulo: datos y modelo, dinero, legal y ética, usuarios y escala.", detalle:"Detalle: los tiburones.", marca:{ x:.443, y:.814 }, c:{ x:.46, y:.76, s:2.2 } },
   { nombre:"Veredicto", corto:"Veredicto", texto:"Cada tiburón decide: dentro, dentro con condiciones o fuera. Y dice qué tendría que cambiar.", detalle:"Detalle: un barco en el horizonte.", marca:{ x:.241, y:.196 }, c:{ x:.245, y:.21, s:3 } }
 ];
@@ -18,12 +18,12 @@ const GIROS = [
   { t:"Un competidor lanza algo parecido, gratis.", img:"img/tanque/assets/gulf-stream.jpg", pos:"44% 82%", alt:"Detalle de The Gulf Stream: tiburones rodean el bote." },
   { t:"La norma cambia y ahora exige explicar cada decisión.", img:"img/etica/assets/faro-lente-1931.jpg", pos:"50% 50%", alt:"Lente de un faro, de 1931." },
   { t:"Descubren que sus datos tienen sesgo por región o por género.", img:"img/casos/assets/nueva-granada-1858.jpg", pos:"50% 45%", alt:"Mapa antiguo de la Nueva Granada, dividido por regiones." },
-  { t:"Les recortan el presupuesto un 40%: ¿qué sacan del alcance con MoSCoW?", img:"img/evaluacion/assets/ev-fardos.jpg", pos:"50% 50%", alt:"Fardos de carga suben a la bodega de un velero." },
+  { t:"Les recortan el presupuesto un 40%: ¿qué sacan del alcance con MoSCoW (Debe, Debería, Podría y No tendrá)?", img:"img/evaluacion/assets/ev-fardos.jpg", pos:"50% 50%", alt:"Fardos de carga suben a la bodega de un velero." },
   { t:"Seis meses después, la precisión baja sin que nadie lo note.", img:"img/riesgos/assets/tormenta-turner.jpg", pos:"50% 50%", alt:"Tormenta en el mar pintada por Turner." },
-  { t:"El sponsor se va de la organización.", img:"img/riesgos/assets/naufragio-vernet.jpg", pos:"50% 50%", alt:"Naufragio pintado por Vernet." },
+  { t:"El sponsor (el directivo que patrocina el proyecto) se va de la organización.", img:"img/riesgos/assets/naufragio-vernet.jpg", pos:"50% 50%", alt:"Naufragio pintado por Vernet." },
   { t:"Otra organización quiere usar su solución: ¿qué cambian?", img:"img/mercado/assets/muelle-puerto-colombia.jpg", pos:"50% 50%", alt:"El muelle de Puerto Colombia." },
   { t:"Un afectado reclama por una decisión del modelo: ¿quién responde?", img:"img/evaluacion/assets/ev-aduana.jpg", pos:"50% 50%", alt:"La antigua Aduana de Barranquilla." },
-  { t:"El proveedor de nube o de API sube el precio o descontinúa el servicio.", img:"img/riesgos/assets/noveno-oleaje.jpg", pos:"50% 60%", alt:"El noveno oleaje, de Aivazovsky." }
+  { t:"El proveedor de nube o de API (servicio externo que usan) sube el precio o descontinúa el servicio.", img:"img/riesgos/assets/noveno-oleaje.jpg", pos:"50% 60%", alt:"El noveno oleaje, de Aivazovsky." }
 ];
 const INICIAL = { img:CUADRO.src, pos:"44% 82%", alt:"Detalle de The Gulf Stream: tiburones rodean el bote." };
 const PIE_CUADRO = "Winslow Homer, The Gulf Stream, 1899. El bote, los tiburones y el barco del horizonte: los tres momentos de cada ronda.";

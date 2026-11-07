@@ -162,11 +162,11 @@ const PROYECTOS = [
   { n:"Nexus UAC: cuadro de mando", p:"La información de las áreas está dispersa: sin indicadores integrados no hay seguimiento de objetivos ni decisiones con evidencia.",
     tipos:["regresion", "clustering"],
     porque:"Un tablero solo visualiza. La IA entra cuando el tablero anticipa: pronosticar los indicadores y disparar alertas cuando un comportamiento se sale de lo normal (detección de anomalías).",
-    medir:"Error del pronóstico por indicador (MAE o MAPE) y porcentaje de alertas que resultaron útiles para la dirección." },
+    medir:"Error del pronóstico por indicador (MAE o MAPE: error promedio en unidades o en porcentaje) y porcentaje de alertas que resultaron útiles para la dirección." },
   { n:"Pérdidas de energía: inspección predictiva", p:"Pérdidas no técnicas por fraude, manipulación de medidores y conexiones ilegales, con inspecciones de campo poco efectivas.",
     tipos:["clasificacion", "clustering"],
     porque:"Se trata de ordenar a quién inspeccionar primero: un puntaje de riesgo de fraude a partir del consumo y de los datos del medidor (clasificación), apoyado en detección de consumos anómalos (clustering).",
-    medir:"Tasa de hallazgo de las inspecciones frente a la línea base del proyecto, y precisión y recall del puntaje de riesgo." }
+    medir:"Tasa de hallazgo de las inspecciones frente a la línea base del proyecto, y precisión y recall (cuántos casos reales detecta) del puntaje de riesgo." }
 ];
 Clase.seccion({
   id:"proyectos", orden:24,

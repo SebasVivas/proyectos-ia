@@ -155,12 +155,12 @@ Clase.seccion({
 
 /* ================================================================== 2. CICLO MLOPS: el timón */
 const ETAPAS = [
-  { slug:"diseno", corto:"Diseño", n:"Diseño del modelo", f:"Qué modelo, qué variables y contra qué baseline se compara." },
+  { slug:"diseno", corto:"Diseño", n:"Diseño del modelo", f:"Qué modelo, qué variables y contra qué baseline (modelo base de comparación) se compara." },
   { slug:"datos", corto:"Datos", n:"Preparación de datos", f:"Limpiar, transformar y separar en entrenamiento, validación y prueba." },
   { slug:"entrenamiento", corto:"Entrenamiento", n:"Entrenamiento", f:"El modelo aprende de los datos sin memorizarlos." },
   { slug:"evaluacion", corto:"Evaluación", n:"Evaluación y ajuste", f:"Medir dónde falla y quedarse con la mejor versión." },
-  { slug:"implementacion", corto:"Implementación", n:"Implementación", f:"Empacarlo como API y ponerlo en la nube o en casa." },
-  { slug:"monitoreo", corto:"Monitoreo", n:"Monitoreo y mejora", f:"Vigilar el drift y reentrenar cuando el mundo cambia." }
+  { slug:"implementacion", corto:"Implementación", n:"Implementación", f:"Empacarlo como API (servicio al que otros sistemas le piden predicciones) y ponerlo en la nube o en casa." },
+  { slug:"monitoreo", corto:"Monitoreo", n:"Monitoreo y mejora", f:"Vigilar el drift (los datos reales se alejan de los de entrenamiento) y reentrenar cuando el mundo cambia." }
 ];
 function svgTimon(){
   let rayos = "", mangos = "", juntas = "", pernos = "";
@@ -221,7 +221,7 @@ Clase.seccion({
   <section class="s-implementacion s-implementacion-mlops s-implementacion-azul" data-campo="astillero-azul" aria-labelledby="implementacion-mlops-titulo">
     <div class="s-implementacion-mlops-escena">
       <div class="s-implementacion-mlops-cab"><h2 id="implementacion-mlops-titulo">Ciclo de vida del modelo: MLOps</h2></div>
-      <p class="s-implementacion-mlops-intro">Seis etapas en ciclo: lo que enseña el monitoreo vuelve al diseño.<span data-solo-vivo hidden> El timón gira con el scroll.</span></p>
+      <p class="s-implementacion-mlops-intro">MLOps (operaciones de machine learning): seis etapas en ciclo; lo que enseña el monitoreo vuelve al diseño.<span data-solo-vivo hidden> El timón gira con el scroll.</span></p>
       <div class="s-implementacion-mlops-tarjeta" aria-hidden="true">
         ${ETAPAS.map((e, i) => `<div class="s-implementacion-mlops-ficha" data-i="${i}"${i ? ' style="opacity:0;visibility:hidden"' : ""}><h3>${e.n}</h3><p>${e.f}</p></div>`).join("")}
       </div>
@@ -487,11 +487,11 @@ const RUTAS = {
 };
 const total = r => RUTAS[r].reduce((s, h) => s + h.ms, 0);
 const DESPLIEGUE = [
-  ["API REST", "El modelo se expone como un endpoint HTTP: los clientes envían datos y reciben predicciones. Frameworks: FastAPI, Flask, Django REST.", "api"],
-  ["Contenedores", "Docker empaqueta el modelo con sus dependencias. Kubernetes orquesta múltiples instancias para escalar.", "contenedores"],
-  ["Plataformas cloud", "AWS SageMaker, GCP Vertex AI y Azure ML ofrecen entrenamiento, despliegue y monitoreo integrados.", "nube"],
-  ["Edge deployment", "Modelos ligeros en dispositivos IoT, móviles o cámaras: TensorFlow Lite, ONNX, CoreML.", "edge"],
-  ["Integración al sistema", "El modelo se integra al flujo de trabajo que ya existe: ERP, app móvil, dashboard o proceso automatizado.", "clientes"]
+  ["API REST", "El modelo se expone como un endpoint HTTP (una dirección web que recibe datos): los clientes envían datos y reciben predicciones. Frameworks (librerías para construir la API): FastAPI, Flask, Django REST.", "api"],
+  ["Contenedores", "Docker empaqueta el modelo con sus dependencias. Kubernetes (administrador de contenedores) orquesta varias copias del modelo para escalar.", "contenedores"],
+  ["Plataformas cloud", "AWS SageMaker, GCP Vertex AI y Azure ML (los servicios de IA de Amazon, Google y Microsoft) ofrecen entrenamiento, despliegue y monitoreo integrados.", "nube"],
+  ["Edge deployment", "Modelos ligeros en dispositivos IoT (aparatos conectados a internet), móviles o cámaras: TensorFlow Lite, ONNX, CoreML (formatos para correr modelos en el dispositivo).", "edge"],
+  ["Integración al sistema", "El modelo se integra al flujo de trabajo que ya existe: ERP (sistema de gestión de la empresa), app móvil, dashboard (tablero de indicadores) o proceso automatizado.", "clientes"]
 ];
 function svgRuta(){
   const yC = i => 22 + i * 92, yK = j => 70 + j * 98, YA = 200;
@@ -604,7 +604,7 @@ Clase.seccion({
     </div>
     ${svgRuta()}
     <ol class="s-implementacion-saltos" aria-label="Saltos de la ruta y su latencia ilustrativa"></ol>
-    <p class="s-implementacion-nota" style="margin-top:12px;max-width:80ch">Animación en cámara lenta. Latencias ilustrativas: el tiempo real depende de la red, del tamaño del modelo y del hardware.</p>
+    <p class="s-implementacion-nota" style="margin-top:12px;max-width:80ch">Animación en cámara lenta. Latencias (tiempos de respuesta) ilustrativas; inferencia es el momento en que el modelo calcula la predicción. El tiempo real depende de la red, del tamaño del modelo y del hardware.</p>
     <p class="solo-lector" aria-live="polite" data-anuncio></p>
     <ul class="s-implementacion-cinco">
       ${DESPLIEGUE.map(([t, d, r]) => `<li data-para="${r}"><h3>${t}</h3><p>${d}</p></li>`).join("")}
@@ -812,7 +812,7 @@ Clase.seccion({
       </figure>
     </div>
     <div class="s-implementacion-veredicto" data-estado="ok" aria-live="polite"><p class="s-implementacion-vt"></p><p class="s-implementacion-vx"></p></div>
-    <p class="s-implementacion-nota s-implementacion-psi">PSI: menos de 0,10 estable; más de 0,25, drift fuerte.</p>
+    <p class="s-implementacion-nota s-implementacion-psi">PSI (índice de estabilidad: cuánto cambiaron los datos frente al entrenamiento): menos de 0,10 estable; más de 0,25, drift fuerte.</p>
     <div class="s-implementacion-registro">
       <h3>Registro de versiones</h3>
       <p>Lo que MLflow y DVC guardan en cada reentrenamiento.</p>

@@ -4,10 +4,10 @@
 const R = window.DemosIA ? DemosIA.RUBRICA : { dimensiones:[], niveles:{} };
 const EJEMPLO = {
   datos:"Tenemos 3 años de datos transaccionales con variables relevantes al problema.",
-  infra:"Contamos con acceso a cloud (AWS) y capacidad de GPU para entrenamiento.",
+  infra:"Contamos con acceso a la nube (AWS, de Amazon) y capacidad de GPU (procesadores que aceleran el entrenamiento).",
   talento:"Equipo de data scientists disponible y un consultor externo de ML.",
   gobernanza:"No existe política de uso de datos ni comité de ética. Se debe crear antes del piloto.",
-  integracion:"Los sistemas legados no tienen API. Se requiere desarrollo de middleware."
+  integracion:"Los sistemas legados no tienen API (puerta para que otros sistemas les pidan datos). Se requiere desarrollo de middleware (software puente entre sistemas)."
 };
 const COLOR_NIVEL = { 5:"#a7ff9c", 4:"#a7ff9c", 3:"#c5c5c5", 2:"#ff6831", 1:"#ff6831" };
 

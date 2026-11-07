@@ -20,7 +20,7 @@ const W = MAPA.W, H = MAPA.H;
 const CASOS = [
   { id:"licores", sector:"Licores", proyecto:"Geomarketing de pauta",
     desc:"Definir los puntos y canales óptimos de publicidad en el país para maximizar el retorno de la inversión.",
-    resultado:"Inversión enfocada donde más rinde.", tecnica:"clustering geoespacial",
+    resultado:"Inversión enfocada donde más rinde.", tecnica:"clustering geoespacial (agrupar puntos del mapa por cercanía)",
     nota:`Clustering geoespacial: ${MAPA.ciudades.length} ciudades reales agrupadas en ${MAPA.grupos.length} zonas por cercanía. Cada rosa es el centro de una zona. Datos ilustrativos.` },
   { id:"cerveceria", sector:"Cervecería", proyecto:"Cobertura comercial",
     desc:"Asignar comerciales y puntos de distribución en Antioquia según el potencial de cada zona.",
@@ -32,7 +32,7 @@ const CASOS = [
     nota:"Optimización + tableros: así se vería el porcentaje de presupuesto ejecutado por territorio. Datos simulados: los colores no describen la ejecución real de ningún departamento." },
   { id:"banca", sector:"Banca", proyecto:"Portafolio activo",
     desc:"Modelos de forecast y predictivos para el manejo activo del portafolio de inversión nacional.",
-    resultado:"Decisiones de inversión guiadas por datos.", tecnica:"forecasting con LSTM / Prophet",
+    resultado:"Decisiones de inversión guiadas por datos.", tecnica:"forecasting (pronóstico) con LSTM / Prophet (modelos de series de tiempo)",
     nota:"Forecasting: tres años del portafolio y su pronóstico a doce meses, con el rango probable. Datos ilustrativos." },
   { id:"alimentos", sector:"Alimentos", proyecto:"Control de sobrecostos",
     desc:"Anticipar sobrecostos en las operaciones de minutas antes de que ocurran y proteger el margen.",

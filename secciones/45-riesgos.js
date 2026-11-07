@@ -158,7 +158,7 @@ Clase.seccion({
     <section class="s-impacto s-impacto-tec" data-campo="tormenta-pizarra" aria-labelledby="impacto-tec-titulo">
       <div class="s-impacto-tec-cab">
         <h2 id="impacto-tec-titulo">Impacto de la tecnología en la gestión de proyectos</h2>
-        <p class="s-impacto-nota">Según el PMBOK, numeral 2.5.1.3.</p>
+        <p class="s-impacto-nota">Según el PMBOK (la guía de gestión de proyectos del PMI), numeral 2.5.1.3.</p>
         <ol class="s-impacto-indice" aria-label="Afirmaciones de esta pantalla">
           ${AFIRMA.map((a, k) => `<li><a href="#${idTec(k)}" data-ir="${idTec(k)}">${a.corto}</a></li>`).join("")}
         </ol>
@@ -302,14 +302,14 @@ const RUMBOS = [
   { n:"Tecnología", e:"Fallas de infraestructura." },
   { n:"Negocio", e:"Baja adopción de usuarios." },
   { n:"Ética", e:"Sesgos discriminatorios." },
-  { n:"Legal", e:"Incumplimiento de la Ley 1581 o del GDPR." },
+  { n:"Legal", e:"Incumplimiento de la Ley 1581 (datos personales en Colombia) o del GDPR (reglamento europeo de datos)." },
   { n:"Operacional", e:"Degradación del modelo en producción." }
 ];
 /* La tabla de la diapositiva 15, completa. p: probabilidad (1 Bajo, 2 Medio, 3 Alto); i: impacto (1 Bajo a 4 Crítico) */
 const RIESGOS = [
   { id:"datos", cat:"Datos", riesgo:"Datos insuficientes, sesgados o con errores en el entrenamiento", p:3, i:3, mit:"Estrategia de recolección, auditoría de calidad, diversificación de fuentes." },
   { id:"tecnico", cat:"Técnico", riesgo:"Modelo no converge o presenta sobreajuste (overfitting)", p:3, i:3, mit:"Validación cruzada, regularización, arquitectura alternativa más simple." },
-  { id:"legal", cat:"Legal/Ético", riesgo:"Sesgo algorítmico, violación de privacidad o incumplimiento regulatorio", p:3, i:4, mit:"XAI, revisión de sesgo, anonimización, comité de ética, cumplimiento de la Ley 1581." },
+  { id:"legal", cat:"Legal/Ético", riesgo:"Sesgo algorítmico, violación de privacidad o incumplimiento regulatorio", p:3, i:4, mit:"XAI (IA explicable), revisión de sesgo, anonimización, comité de ética, cumplimiento de la Ley 1581." },
   { id:"financiero", cat:"Financiero", riesgo:"Sobrecostos de infraestructura cloud superiores a lo proyectado", p:2, i:2, mit:"Monitoreo de gasto cloud, arquitectura serverless, contratos fijos, alertas." },
   { id:"adopcion", cat:"Adopción", riesgo:"Usuarios o equipo no adoptan la solución de IA en producción", p:2, i:3, mit:"Co-diseño con usuarios, pilotos graduales, formación y gestión del cambio." },
   { id:"regulatorio", cat:"Regulatorio", riesgo:"Cambios en normativas que afectan el uso de datos o decisiones automatizadas", p:1, i:3, mit:"Monitoreo legal continuo, arquitectura adaptable, asesoría jurídica periódica." }
@@ -485,7 +485,7 @@ Clase.seccion({
     <section class="cap s-riesgos s-riesgos-ap" data-campo="tormenta-pizarra" style="--campo:#1f2a30;--tinta:#fff" aria-labelledby="riesgos-titulo">
       <div class="s-riesgos-ap-texto">
         <h2 id="riesgos-titulo"><span class="mask"><span class="in">Gestión de</span></span><span class="mask"><span class="in">riesgos</span></span></h2>
-        <p class="s-riesgos-ap-lead">En proyectos de IA, con el proceso del PMI y las buenas prácticas de IA responsable.</p>
+        <p class="s-riesgos-ap-lead">En proyectos de IA, con el proceso del PMI (Project Management Institute) y las buenas prácticas de IA responsable.</p>
         <p class="s-riesgos-ap-obj"><strong>Objetivo:</strong> identificar, evaluar, mitigar y monitorear los riesgos asociados al desarrollo, despliegue y operación de soluciones de inteligencia artificial, garantizando el cumplimiento de los objetivos de negocio, regulatorios y tecnológicos.</p>
         <p class="s-riesgos-nota">Claude-Joseph Vernet, «El naufragio», 1772. Galería Nacional de Arte, Washington.</p>
       </div>

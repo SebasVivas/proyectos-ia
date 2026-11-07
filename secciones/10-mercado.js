@@ -221,7 +221,7 @@ Clase.seccion({
         <span class="s-mercado-gigante" aria-hidden="true" data-palabra="otros"></span>
         <div class="s-mercado-texto">
           <h3 id="mercado-competencia-t">¿Existen soluciones similares?</h3>
-          <p class="s-mercado-guia"><strong>Análisis de competencia.</strong> ¿Cómo se diferencia su proyecto? Hagan benchmarking de herramientas de IA.</p>
+          <p class="s-mercado-guia"><strong>Análisis de competencia.</strong> ¿Cómo se diferencia su proyecto? Hagan benchmarking (comparación punto por punto) de herramientas de IA.</p>
           <p class="s-mercado-dato">Comparen al menos 2 alternativas en la misma tabla: qué hace cada una, para quién y a qué costo.</p>
         </div>
         <figure class="s-mercado-figura">
@@ -250,7 +250,7 @@ Clase.seccion({
           <p class="s-mercado-guia"><strong>Modelo de negocio.</strong> Cinco vías frecuentes. Elijan la que su cliente sí pagaría.</p>
         </div>
         <ul class="s-mercado-contenedores" aria-label="Vías de monetización">
-          <li class="s-mercado-contenedor s-mercado-c-saas" style="--c:${COB};--t:#fff"><strong>SaaS</strong><span>Suscripción para usar el servicio en la nube.</span></li>
+          <li class="s-mercado-contenedor s-mercado-c-saas" style="--c:${COB};--t:#fff"><strong>SaaS</strong><span>Software como servicio: suscripción para usarlo en la nube.</span></li>
           <li class="s-mercado-contenedor s-mercado-c-licencias" style="--c:${AMA};--t:#000"><strong>Licencias</strong><span>Pago por el derecho de instalar y usar el software o el modelo.</span></li>
           <li class="s-mercado-contenedor s-mercado-c-freemium" style="--c:${AMA};--t:#000"><strong>Freemium</strong><span>Lo básico es gratis; se cobra la versión completa.</span></li>
           <li class="s-mercado-contenedor s-mercado-c-consultoria" style="--c:#000;--t:#fff"><strong>Consultoría</strong><span>Proyectos a la medida de cada cliente.</span></li>

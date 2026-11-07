@@ -17,7 +17,7 @@ const ENTREGAS = [
       "El semáforo de viabilidad técnica: datos, infraestructura, talento y gobernanza.",
       "Análisis de mercado: segmento, competencia y propuesta de valor.",
       "Modelo de negocio para proyectos de IA.",
-      "Análisis DOFA aplicado al proyecto de IA."
+      "Análisis DOFA (debilidades, oportunidades, fortalezas y amenazas) aplicado al proyecto de IA."
     ],
     tareas:[
       { t:"Tipo de modelo de IA seleccionado y justificado", d:"¿Cuál es el tipo de modelo? ¿Por qué? ¿Qué algoritmos considerarían? Justifíquenlo en función del problema y de los datos disponibles." },
@@ -34,13 +34,13 @@ const ENTREGAS = [
     id:"entregables-financiera", min:75,
     lineas:["Viabilidad financiera,", "legal y riesgos"],
     titulo:"Viabilidad financiera, legal y riesgos",
-    sub:"ROI, VPN, payback, Ley 1581 y mapa de riesgos.",
+    sub:"ROI (retorno de la inversión), VPN (valor presente neto), payback (tiempo para recuperar la inversión), Ley 1581 (datos personales) y mapa de riesgos.",
     aprendido:[
-      "Cómo estimar el CAPEX y el OPEX de un proyecto de IA.",
+      "Cómo estimar el CAPEX (inversión inicial) y el OPEX (costo anual de operación) de un proyecto de IA.",
       "Calcular ROI, payback y VPN con un caso práctico.",
-      "Marco legal en Colombia: Ley 1581 y GDPR.",
+      "Marco legal: Ley 1581 (datos personales en Colombia) y GDPR (reglamento europeo de datos).",
       "Sesgo algorítmico: qué es y cómo mitigarlo.",
-      "Transparencia y explicabilidad (XAI): LIME y SHAP.",
+      "Transparencia y explicabilidad (XAI): LIME y SHAP, que muestran cuánto pesa cada variable en una decisión.",
       "Construcción de un mapa de riesgos con probabilidad e impacto."
     ],
     tareas:[
