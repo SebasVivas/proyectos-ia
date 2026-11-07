@@ -1,9 +1,7 @@
 /* secciones/70-implementacion.js — «El astillero»: módulo 5, implementación y mejora de la solución.
    Pantallas (ids de sección): implementacion (apertura), implementacion-mlops (timón fijado con pin),
-   implementacion-entrenamiento (complejidad en vivo), implementacion-aprendizaje (tasa de aprendizaje),
-   implementacion-ajuste (conceptos, hiperparámetros y métricas), implementacion-despliegue (botadura),
-   implementacion-ruta (una predicción en la nube o en el borde), implementacion-mejora (drift en vivo)
-   e implementacion-mantener (monitoreo, re-entrenamiento, feedback y documentación).
+   implementacion-entrenamiento (complejidad en vivo), implementacion-ruta (despliegue: una predicción en la nube
+   o en el borde) e implementacion-mejora (drift en vivo).
    Paleta del acto: concreto #d7d5cf (tinta negra 14,3:1), naranja de seguridad #ff5b14 (tinta negra 6,8:1),
    azul de plano #1446a0 (tinta blanca 8,7:1) y negro (tinta blanca 21:1; naranja sobre negro 6,8:1). */
 (() => {
@@ -157,18 +155,12 @@ Clase.seccion({
 
 /* ================================================================== 2. CICLO MLOPS: el timón */
 const ETAPAS = [
-  { slug:"diseno", corto:"Diseño", n:"Diseño del modelo",
-    items:["Arquitectura: qué modelo y cómo se arma", "Features: qué variables mira", "Baseline: el punto de comparación más simple", "Framework: TensorFlow, PyTorch o scikit-learn"] },
-  { slug:"datos", corto:"Datos", n:"Preparación de datos",
-    items:["ETL: extraer, transformar y cargar", "Feature engineering", "Separación train / val / test", "Data augmentation"] },
-  { slug:"entrenamiento", corto:"Entrenamiento", n:"Entrenamiento",
-    items:["Fitting: el modelo se ajusta a los datos", "Optimización de hiperparámetros", "Regularización para no memorizar"] },
-  { slug:"evaluacion", corto:"Evaluación", n:"Evaluación y ajuste",
-    items:["Métricas de desempeño", "Análisis de errores: dónde y por qué falla", "Comparación de versiones"] },
-  { slug:"implementacion", corto:"Implementación", n:"Implementación",
-    items:["Dockerización", "API REST", "Despliegue en la nube (AWS, GCP, Azure) u on-premise"] },
-  { slug:"monitoreo", corto:"Monitoreo", n:"Monitoreo y mejora",
-    items:["Drift del modelo", "Alertas", "Re-entrenamiento automático", "Feedback loop"] }
+  { slug:"diseno", corto:"Diseño", n:"Diseño del modelo", f:"Qué modelo, qué variables y contra qué baseline se compara." },
+  { slug:"datos", corto:"Datos", n:"Preparación de datos", f:"Limpiar, transformar y separar en entrenamiento, validación y prueba." },
+  { slug:"entrenamiento", corto:"Entrenamiento", n:"Entrenamiento", f:"El modelo aprende de los datos sin memorizarlos." },
+  { slug:"evaluacion", corto:"Evaluación", n:"Evaluación y ajuste", f:"Medir dónde falla y quedarse con la mejor versión." },
+  { slug:"implementacion", corto:"Implementación", n:"Implementación", f:"Empacarlo como API y ponerlo en la nube o en casa." },
+  { slug:"monitoreo", corto:"Monitoreo", n:"Monitoreo y mejora", f:"Vigilar el drift y reentrenar cuando el mundo cambia." }
 ];
 function svgTimon(){
   let rayos = "", mangos = "", juntas = "", pernos = "";
@@ -218,14 +210,10 @@ Clase.seccion({
   .s-implementacion-mlops .s-implementacion-mlops-tarjeta{position:absolute;left:50%;bottom:50%;width:min(780px,88vw);margin-left:calc(min(780px,88vw) / -2);background:#ff5b14;color:#000;padding:22px 30px 24px;display:grid;transform-origin:50% 100%}
   .s-implementacion-mlops .s-implementacion-mlops-ficha{grid-area:1/1}
   .s-implementacion-mlops .s-implementacion-mlops-ficha h3{font-size:var(--step-head);letter-spacing:-.04em;line-height:.9}
-  .s-implementacion-mlops .s-implementacion-mlops-ficha ul{list-style:none;columns:2;column-gap:28px;margin-top:16px;font-size:var(--step-lead);line-height:1.2}
-  .s-implementacion-mlops .s-implementacion-mlops-ficha li{break-inside:avoid;position:relative;padding-left:20px;margin-bottom:8px}
-  .s-implementacion-mlops .s-implementacion-mlops-ficha li::before{content:"";position:absolute;left:0;top:.4em;width:9px;height:9px;background:#000}
+  .s-implementacion-mlops .s-implementacion-mlops-ficha p{margin-top:14px;font-size:var(--step-lead);line-height:1.25;font-weight:600;max-width:34ch}
   .s-implementacion-mlops .s-implementacion-mlops-mastil{position:absolute;left:50%;top:50%;width:8px;height:26px;margin-left:-4px;background:#ff5b14}
   .s-implementacion-mlops .s-implementacion-mlops-lista{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px var(--gap);padding:24px var(--margen) 96px}
   .s-implementacion-mlops .s-implementacion-mlops-lista h3{margin-bottom:12px}
-  .s-implementacion-mlops .s-implementacion-mlops-lista ul{list-style:none}
-  .s-implementacion-mlops .s-implementacion-mlops-lista ul li{margin-bottom:6px}
   @media (max-width:900px){.s-implementacion-mlops .s-implementacion-mlops-lista{grid-template-columns:1fr}.s-implementacion-mlops .s-implementacion-mlops-intro{display:none}}
   `,
   html:`
@@ -235,7 +223,7 @@ Clase.seccion({
       <div class="s-implementacion-mlops-cab"><h2 id="implementacion-mlops-titulo">Ciclo de vida del modelo: MLOps</h2></div>
       <p class="s-implementacion-mlops-intro">Seis etapas en ciclo: lo que enseña el monitoreo vuelve al diseño.<span data-solo-vivo hidden> El timón gira con el scroll.</span></p>
       <div class="s-implementacion-mlops-tarjeta" aria-hidden="true">
-        ${ETAPAS.map((e, i) => `<div class="s-implementacion-mlops-ficha" data-i="${i}"${i ? ' style="opacity:0;visibility:hidden"' : ""}><h3>${e.n}</h3><ul>${e.items.map(t => `<li>${t}</li>`).join("")}</ul></div>`).join("")}
+        ${ETAPAS.map((e, i) => `<div class="s-implementacion-mlops-ficha" data-i="${i}"${i ? ' style="opacity:0;visibility:hidden"' : ""}><h3>${e.n}</h3><p>${e.f}</p></div>`).join("")}
       </div>
       <div class="s-implementacion-mlops-mastil" aria-hidden="true"></div>
       <div class="s-implementacion-mlops-rueda" aria-hidden="true">
@@ -244,7 +232,7 @@ Clase.seccion({
       </div>
     </div>
     <ol class="s-implementacion-mlops-lista" aria-label="Las seis etapas del ciclo de vida del modelo">
-      ${ETAPAS.map(e => `<li><h3>${e.n}</h3><ul>${e.items.map(t => `<li>${t}</li>`).join("")}</ul></li>`).join("")}
+      ${ETAPAS.map(e => `<li><h3>${e.n}</h3><p>${e.f}</p></li>`).join("")}
     </ol>
   </section>`,
   iniciar(ctx){
@@ -359,7 +347,7 @@ function explicarAjuste(a){
 }
 Clase.seccion({
   id:"implementacion-entrenamiento", orden:72,
-  indice:{ texto:"Entrenamiento en vivo", ir:"implementacion-entrenamiento", nota:"Subajuste, sobreajuste y tasa de aprendizaje" },
+  indice:{ texto:"Entrenamiento en vivo", ir:"implementacion-entrenamiento", nota:"Subajuste y sobreajuste en vivo" },
   css:`
   .s-implementacion-entrenamiento .s-implementacion-demo{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);row-gap:20px;margin-top:28px;align-items:start}
   .s-implementacion-entrenamiento .s-implementacion-fig{grid-column:1/9;display:flex;flex-direction:column;gap:10px}
@@ -382,7 +370,7 @@ Clase.seccion({
   <section class="s-implementacion s-implementacion-entrenamiento s-implementacion-concreto s-implementacion-pantalla" data-campo="astillero-concreto" aria-labelledby="implementacion-entrenamiento-titulo">
     <div class="s-implementacion-cab">
       <h2 id="implementacion-entrenamiento-titulo">Entrenamiento y ajuste del modelo</h2>
-      <p>Entrenar es buscar la complejidad justa. El error de entrenamiento siempre baja; el de validación, con semanas que el modelo nunca vio, es el que dice la verdad.</p>
+      <p>Entrenar es buscar la complejidad justa: manda el error con datos que el modelo nunca vio.</p>
     </div>
     <div class="s-implementacion-demo">
       <figure class="s-implementacion-fig">
@@ -491,323 +479,6 @@ Clase.seccion({
   }
 });
 
-/* ================================================================== 4. TASA DE APRENDIZAJE: converge, oscila o diverge */
-/* Regresión lineal con descenso de gradiente estocástico (lotes de 8, 30 épocas). Datos sintéticos.
-   Con x centrada, la pérdida es exactamente L(w,b) = Lmin + sxx·(w - w*)² + (b - b*)²: un valle elíptico. */
-const PASOS = (() => {
-  const r = rng(3), n = 48, xs = [], ys = [];
-  for (let i = 0; i < n; i++) xs.push(gauss(r));
-  const mx = xs.reduce((a, b) => a + b, 0) / n, sd = Math.sqrt(xs.reduce((a, b) => a + (b - mx) ** 2, 0) / n);
-  for (let i = 0; i < n; i++){ xs[i] = 0.5 * (xs[i] - mx) / sd; ys.push(3 * xs[i] + 2 + gauss(r, 0, 0.5)); }
-  const my = ys.reduce((a, b) => a + b, 0) / n, sxx = xs.reduce((a, x) => a + x * x, 0) / n, sxy = xs.reduce((a, x, i) => a + x * ys[i], 0) / n;
-  const wOpt = sxy / sxx, bOpt = my, lMin = ys.reduce((a, y, i) => a + (wOpt * xs[i] + bOpt - y) ** 2, 0) / n;
-  const perdida = (w, b) => lMin + sxx * (w - wOpt) ** 2 + (b - bOpt) ** 2;
-  const TASAS = [0.001, 0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.3, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.3];
-  const LOTE = 8, EPOCAS = 30;
-  function entrenar(eta){
-    const rr = rng(5), idx = xs.map((_, i) => i); let w = -3, b = -2;
-    const camino = [[w, b]], L = [perdida(w, b)];
-    for (let e = 0; e < EPOCAS; e++){
-      for (let i = n - 1; i > 0; i--){ const j = Math.floor(rr() * (i + 1)); const t = idx[i]; idx[i] = idx[j]; idx[j] = t; }
-      for (let k = 0; k < n; k += LOTE){
-        let gw = 0, gb = 0;
-        for (let q = k; q < k + LOTE; q++){ const i = idx[q], er = w * xs[i] + b - ys[i]; gw += 2 * er * xs[i]; gb += 2 * er; }
-        w -= eta * gw / LOTE; b -= eta * gb / LOTE;
-        const l = perdida(w, b); camino.push([w, b]); L.push(l);
-        if (!isFinite(l) || l > 1e9) return { eta, camino, L, explota:true };
-      }
-    }
-    return { eta, camino, L, explota:false };
-  }
-  const corridas = TASAS.map(eta => {
-    const c = entrenar(eta), L = c.L, fin = L[L.length - 1];
-    let estado;
-    if (c.explota || !(fin < L[0])) estado = "diverge";
-    else {
-      const cola = L.slice(-60), amp = Math.max(...cola) / Math.min(...cola);
-      let subidas = 0; for (let i = 1; i < cola.length; i++) if (cola[i] > cola[i - 1] * 1.02) subidas++;
-      estado = (subidas >= 15 && amp > 1.7) ? "oscila" : fin > 3 * lMin ? "lento" : "converge";
-    }
-    return Object.assign(c, { estado, fin });
-  });
-  return { TASAS, corridas, wOpt, bOpt, lMin, sxx, perdida, PASOS_TOTAL:EPOCAS * n / LOTE, EPOCAS, LOTE };
-})();
-const NOMBRE_TASA = {
-  lento:["Converge muy lento", "Los pasos son tan cortos que en 30 épocas apenas avanza: se gasta tiempo y cómputo sin llegar al mínimo."],
-  converge:["Converge", "La pérdida baja rápido y se estabiliza cerca del mínimo posible."],
-  oscila:["Oscila", "Los pasos son tan largos que el modelo rebota de una pared a otra del valle: la pérdida sube y baja."],
-  diverge:["Diverge", "Cada paso empeora el error y la pérdida se sale de la escala: el entrenamiento explota."]
-};
-Clase.seccion({
-  id:"implementacion-aprendizaje", orden:73,
-  css:`
-  .s-implementacion-aprendizaje .s-implementacion-demo{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);row-gap:20px;margin-top:28px;align-items:start}
-  .s-implementacion-aprendizaje .s-implementacion-fig{grid-column:1/8;display:flex;flex-direction:column;gap:10px}
-  .s-implementacion-aprendizaje .s-implementacion-perdida{height:clamp(280px,calc(100svh - 380px),520px)}
-  .s-implementacion-aprendizaje .s-implementacion-panel{grid-column:8/13;display:flex;flex-direction:column;gap:16px}
-  .s-implementacion-aprendizaje .s-implementacion-valle{height:clamp(200px,calc(100svh - 560px),330px)}
-  .s-implementacion-aprendizaje .s-implementacion-tasa{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;column-gap:18px}
-  .s-implementacion-aprendizaje .s-implementacion-tasa label{grid-column:1/-1;font-weight:600;margin-bottom:4px}
-  .s-implementacion-aprendizaje .s-implementacion-tasa output{font-family:var(--f-display);font-weight:700;font-size:var(--step-head);line-height:.9;letter-spacing:-.04em;min-width:3.2ch;font-variant-numeric:tabular-nums}
-  .s-implementacion-aprendizaje .s-implementacion-leyenda .s-implementacion-ln-perdida{width:30px;height:4px;background:#000;vertical-align:4px}
-  .s-implementacion-aprendizaje .s-implementacion-leyenda .s-implementacion-ln-minimo{width:30px;height:4px;background:#1446a0;vertical-align:4px}
-  .s-implementacion-aprendizaje .s-implementacion-leyenda .s-implementacion-pt-min{width:15px;height:15px;border-radius:50%;background:#ff5b14;border:3px solid #000}
-  @media (max-width:900px){.s-implementacion-aprendizaje .s-implementacion-fig,.s-implementacion-aprendizaje .s-implementacion-panel{grid-column:1/-1}}
-  `,
-  html:`
-  <span class="ancla" data-parada="implementacion-aprendizaje"></span>
-  <section class="s-implementacion s-implementacion-aprendizaje s-implementacion-concreto s-implementacion-pantalla" data-campo="astillero-concreto" aria-labelledby="implementacion-aprendizaje-titulo">
-    <div class="s-implementacion-cab">
-      <h2 id="implementacion-aprendizaje-titulo">Tasa de aprendizaje: el tamaño del paso</h2>
-      <p>El optimizador baja por la superficie del error. Con pasos muy cortos tarda una eternidad; con pasos muy largos rebota de pared a pared o se sale del valle.</p>
-    </div>
-    <div class="s-implementacion-demo">
-      <figure class="s-implementacion-fig">
-        <ul class="s-implementacion-leyenda" aria-hidden="true">
-          <li><i class="s-implementacion-ln-perdida"></i>Pérdida de entrenamiento (MSE) en cada paso</li>
-          <li><i class="s-implementacion-ln-minimo"></i>Mínimo posible</li>
-        </ul>
-        <canvas class="s-implementacion-lienzo s-implementacion-perdida" role="img" aria-label="Curva de aprendizaje: pérdida de entrenamiento por época en escala logarítmica para la tasa de aprendizaje elegida. El resultado se describe en el panel."></canvas>
-        <figcaption>Regresión lineal entrenada con descenso de gradiente estocástico (SGD): lotes de ${PASOS.LOTE} ejemplos, ${PASOS.EPOCAS} épocas, pérdida MSE. Datos sintéticos. Eje vertical en escala logarítmica.</figcaption>
-      </figure>
-      <div class="s-implementacion-panel">
-        <div class="s-implementacion-tasa">
-          <label for="implementacion-tasa">Tasa de aprendizaje (learning rate)</label>
-          <output id="implementacion-tasa-valor" for="implementacion-tasa">0,1</output>
-          <input type="range" id="implementacion-tasa" min="0" max="${PASOS.TASAS.length - 1}" step="1" value="6">
-        </div>
-        <div class="s-implementacion-veredicto" data-estado="converge" aria-live="polite"><p class="s-implementacion-vt">Converge</p><p class="s-implementacion-vx"></p></div>
-        <figure class="s-implementacion-fig">
-          <canvas class="s-implementacion-lienzo s-implementacion-valle" role="img" aria-label="El valle del error visto desde arriba, con el camino que recorre el optimizador hacia el mínimo."></canvas>
-          <figcaption>El valle del error visto desde arriba: cada anillo es un nivel de pérdida, el punto naranja es el mínimo y la línea negra es el camino del optimizador. Horizontal: pendiente; vertical: intercepto.</figcaption>
-        </figure>
-        <div class="s-implementacion-acciones"><button class="boton" type="button" data-repetir>Entrenar otra vez</button></div>
-      </div>
-    </div>
-  </section>`,
-  iniciar(ctx){
-    const { reducir, raiz } = ctx;
-    const sec = raiz.querySelector(".s-implementacion-aprendizaje");
-    if (!sec) return;
-    const rango = sec.querySelector("#implementacion-tasa"), salida = sec.querySelector("#implementacion-tasa-valor");
-    const ver = sec.querySelector(".s-implementacion-veredicto");
-    let corrida = PASOS.corridas[6], mostrados = PASOS.PASOS_TOTAL, t0 = 0, anim = 0;
-    const etiquetaTasa = eta => num(eta, eta < 0.01 ? 3 : eta < 0.1 ? 2 : 1);
-    const LP = lienzo(sec.querySelector(".s-implementacion-perdida"), (c, w, h) => {
-      const m = { l:64, r:20, t:20, b:46 }, pw = w - m.l - m.r, ph = h - m.t - m.b, T = PASOS.PASOS_TOTAL;
-      const X = i => m.l + i / T * pw, Y = v => m.t + (1 - (Math.log10(v) + 1) / 4) * ph;
-      c.fillStyle = "#000"; c.fillRect(m.l - 2, m.t, 2, ph + 2); c.fillRect(m.l - 2, m.t + ph, pw + 2, 2);
-      [[0.1, "0,1"], [1, "1"], [10, "10"], [100, "100"], [1000, "1.000"]].forEach(([v, t]) => { c.fillRect(m.l - 9, Y(v) - 1, 7, 2); rotulo(c, t, m.l - 13, Y(v), { alinear:"right", base:"middle" }); });
-      for (let e = 0; e <= PASOS.EPOCAS; e += 5){ const x = X(e * T / PASOS.EPOCAS); c.fillRect(x - 1, m.t + ph, 2, 8); rotulo(c, e === 0 ? "época 0" : e, x, m.t + ph + 26, { alinear:e === 0 ? "left" : e === PASOS.EPOCAS ? "right" : "center" }); }
-      c.save(); c.strokeStyle = AZUL; c.lineWidth = 3; c.setLineDash([10, 7]); c.beginPath(); c.moveTo(m.l, Y(PASOS.lMin)); c.lineTo(m.l + pw, Y(PASOS.lMin)); c.stroke(); c.restore();
-      rotulo(c, "mínimo posible: " + num(PASOS.lMin, 2), m.l + pw - 4, Y(PASOS.lMin) + 20, { alinear:"right", color:AZUL });
-      const L = corrida.L, hasta = Math.min(mostrados, L.length - 1);
-      c.save(); c.beginPath(); c.rect(m.l, m.t - 2, pw + 4, ph + 2); c.clip();
-      c.strokeStyle = "#000"; c.lineWidth = 3; c.lineJoin = "round"; c.beginPath();
-      let salio = -1;
-      for (let i = 0; i <= hasta; i++){
-        const v = clamp(L[i], 0.1, 5e3), x = X(i), y = Y(v);
-        if (i) c.lineTo(x, y); else c.moveTo(x, y);
-        if (L[i] > 1000 && salio < 0) salio = i;
-      }
-      c.stroke(); c.restore();
-      if (L[hasta] <= 1000){
-        const xi = X(hasta), yi = Y(clamp(L[hasta], 0.1, 1000));
-        c.fillStyle = NARANJA; c.beginPath(); c.arc(xi, yi, 8, 0, 7); c.fill(); c.lineWidth = 3; c.strokeStyle = "#000"; c.stroke();
-      }
-      if (salio >= 0){
-        const xs = X(salio);
-        c.fillStyle = "#000"; c.beginPath(); c.moveTo(xs - 10, m.t + 16); c.lineTo(xs + 10, m.t + 16); c.lineTo(xs, m.t); c.closePath(); c.fill();
-        rotulo(c, "se sale de la escala", Math.min(xs + 16, m.l + pw - 150), m.t + 16, { tam:15 });
-      }
-    });
-    const LV = lienzo(sec.querySelector(".s-implementacion-valle"), (c, w, h) => {
-      const cx = (PASOS.wOpt - 3) / 2 + 0.6, cy = (PASOS.bOpt - 2) / 2 + 0.3, ppu = w / 15;
-      const X = v => w / 2 + (v - cx) * ppu, Y = v => h / 2 - (v - cy) * ppu;
-      c.save(); c.lineWidth = 2.5; c.strokeStyle = AZUL;
-      [0.6, 2.5, 6, 11, 18, 28].forEach(lv => { const ry = Math.sqrt(lv) * ppu, rx = Math.sqrt(lv / PASOS.sxx) * ppu; c.beginPath(); c.ellipse(X(PASOS.wOpt), Y(PASOS.bOpt), rx, ry, 0, 0, Math.PI * 2); c.stroke(); });
-      c.restore();
-      const cam = corrida.camino, hasta = Math.min(mostrados, cam.length - 1), B = 6;
-      const fuera = (x, y) => x < B || x > w - B || y < B || y > h - B;
-      c.strokeStyle = "#000"; c.lineWidth = 2.5; c.lineJoin = "round"; c.beginPath();
-      let px = X(cam[0][0]), py = Y(cam[0][1]), salida = null;
-      c.moveTo(px, py);
-      for (let i = 1; i <= hasta; i++){
-        const x = X(cam[i][0]), y = Y(cam[i][1]);
-        if (fuera(x, y)){
-          const dx = x - px, dy = y - py; let t = 1;
-          if (dx > 0) t = Math.min(t, (w - B - px) / dx); if (dx < 0) t = Math.min(t, (B - px) / dx);
-          if (dy > 0) t = Math.min(t, (h - B - py) / dy); if (dy < 0) t = Math.min(t, (B - py) / dy);
-          salida = { x:px + dx * t, y:py + dy * t, a:Math.atan2(dy, dx) }; c.lineTo(salida.x, salida.y); break;
-        }
-        c.lineTo(x, y); px = x; py = y;
-      }
-      c.stroke();
-      c.fillStyle = "#000"; c.fillRect(X(cam[0][0]) - 6, Y(cam[0][1]) - 6, 12, 12);
-      if (salida){
-        c.save(); c.translate(salida.x, salida.y); c.rotate(salida.a);
-        c.beginPath(); c.moveTo(0, 0); c.lineTo(-16, -8); c.lineTo(-16, 8); c.closePath(); c.fill(); c.restore();
-        rotulo(c, "se sale del valle", w - 12, h - 14, { tam:15, alinear:"right" });
-      }
-      c.fillStyle = NARANJA; c.beginPath(); c.arc(X(PASOS.wOpt), Y(PASOS.bOpt), 9, 0, 7); c.fill(); c.lineWidth = 3; c.strokeStyle = "#000"; c.stroke();
-      rotulo(c, "inicio", X(cam[0][0]) + 12, Y(cam[0][1]) + 5, { tam:14 });
-    });
-    function poner(i, animar){
-      corrida = PASOS.corridas[i]; rango.value = i;
-      const eta = PASOS.TASAS[i]; salida.textContent = etiquetaTasa(eta); rango.setAttribute("aria-valuetext", etiquetaTasa(eta));
-      const [titulo, texto] = NOMBRE_TASA[corrida.estado];
-      ver.dataset.estado = corrida.estado; ver.querySelector(".s-implementacion-vt").textContent = titulo;
-      ver.querySelector(".s-implementacion-vx").textContent = texto + (corrida.estado === "diverge" ? "" : " Pérdida al final: " + num(corrida.fin, 2) + ".");
-      cancelAnimationFrame(anim); anim = 0;
-      if (animar && !reducir){ mostrados = 0; t0 = performance.now(); anim = requestAnimationFrame(cuadro); }
-      else { mostrados = PASOS.PASOS_TOTAL; LP.pintar(); LV.pintar(); }
-    }
-    function cuadro(t){
-      const k = Math.min(1, (t - t0) / 1700);
-      mostrados = Math.round(k * PASOS.PASOS_TOTAL); LP.pintar(); LV.pintar();
-      anim = k < 1 ? requestAnimationFrame(cuadro) : 0;
-    }
-    rango.addEventListener("input", () => poner(+rango.value, true));
-    sec.querySelector("[data-repetir]").addEventListener("click", () => poner(+rango.value, true));
-    poner(6, false);
-    trasFuentes(() => { LP.pintar(); LV.pintar(); });
-    if (reducir) return;
-    let visto = false;
-    alVer(sec.querySelector(".s-implementacion-perdida"), v => { if (v && !visto){ visto = true; poner(+rango.value, true); } });
-  }
-});
-
-/* ================================================================== 5. CONCEPTOS, HIPERPARÁMETROS Y MÉTRICAS */
-const LISTAS = [
-  { t:"Conceptos de entrenamiento", items:[
-    ["Función de pérdida (loss function)", "Mide qué tan lejos quedan las predicciones: MSE en regresión, Cross-Entropy en clasificación."],
-    ["Optimizadores", "SGD, Adam y RMSProp: deciden cómo dar cada paso."],
-    ["Learning rate", "El tamaño del paso: define si el entrenamiento converge."],
-    ["Batch size y epochs", "Cuántos ejemplos entran en cada paso y cuántas veces se recorren los datos."],
-    ["Overfitting vs. underfitting", "Memorizar el ruido o quedarse corto frente a la forma real de los datos."],
-    ["Curvas de aprendizaje (learning curves)", "El error a lo largo del entrenamiento: muestran si converge, oscila o diverge."]
-  ] },
-  { t:"Hiperparámetros clave", items:[
-    ["Grid Search", "Búsqueda exhaustiva: prueba todas las combinaciones de una cuadrícula."],
-    ["Random Search", "Búsqueda aleatoria: prueba combinaciones al azar."],
-    ["Bayesian Optimization", "Búsqueda inteligente: usa lo aprendido para elegir la siguiente prueba."],
-    ["Cross-Validation", "k-fold para una validación robusta."],
-    ["Early stopping", "Detener el entrenamiento a tiempo para evitar el sobreajuste."],
-    ["Regularización", "L1 (Lasso), L2 (Ridge) y Dropout."]
-  ] },
-  { t:"Métricas de evaluación", items:[
-    ["Clasificación", "Accuracy, Precision, Recall, F1, AUC-ROC."],
-    ["Regresión", "MAE, MSE, RMSE, R²."],
-    ["NLP", "BLEU, ROUGE, Perplexity."],
-    ["Detección", "mAP, IoU."],
-    ["Negocio", "Tasa de conversión, ahorro generado."],
-    ["Fairness", "Paridad demográfica, equidad de impacto."]
-  ] }
-];
-/* Dónde prueba cada búsqueda de hiperparámetros: 16 intentos sobre dos hiperparámetros (ilustrativo). */
-function figuraBusquedas(){
-  const r = rng(12), opt = [0.7, 0.32], P = { grid:[], random:[], bayes:[] };
-  for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) P.grid.push([0.14 + i * 0.24, 0.14 + j * 0.24]);
-  for (let k = 0; k < 16; k++) P.random.push([0.07 + r() * 0.86, 0.07 + r() * 0.86]);
-  for (let k = 0; k < 5; k++) P.bayes.push([0.08 + r() * 0.84, 0.08 + r() * 0.84]);
-  for (let k = 0; k < 11; k++){ const s = 0.2 * Math.pow(0.8, k); P.bayes.push([clamp(opt[0] + gauss(r, 0, s), 0.06, 0.94), clamp(opt[1] + gauss(r, 0, s), 0.06, 0.94)]); }
-  const L = 118, G = 23;
-  const panel = (pts, x0, nombre) => `<g transform="translate(${x0} 4)">
-    <ellipse cx="${opt[0] * L}" cy="${opt[1] * L}" rx="${0.17 * L}" ry="${0.12 * L}" fill="#ff5b14"/>
-    <rect x="0" y="0" width="${L}" height="${L}" fill="none" stroke="#fff" stroke-width="3"/>
-    ${pts.map(([x, y]) => `<circle cx="${(x * L).toFixed(1)}" cy="${(y * L).toFixed(1)}" r="4.6" fill="#fff" stroke="#000" stroke-width="1.6"/>`).join("")}
-    <text x="0" y="${L + 26}">${nombre}</text></g>`;
-  return `<figure class="s-implementacion-busquedas">
-    <svg viewBox="0 0 400 156" aria-hidden="true" focusable="false">${panel(P.grid, 2, "Grid")}${panel(P.random, 2 + L + G, "Random")}${panel(P.bayes, 2 + 2 * (L + G), "Bayesiana")}</svg>
-    <figcaption>Dónde prueba cada búsqueda en 16 intentos sobre dos hiperparámetros. El área naranja es la región con mejor desempeño. Ilustrativo.</figcaption>
-  </figure>`;
-}
-LISTAS[1].extra = figuraBusquedas();
-Clase.seccion({
-  id:"implementacion-ajuste", orden:74,
-  css:`
-  .s-implementacion-ajuste .s-implementacion-cab h2{grid-column:1/9}
-  .s-implementacion-ajuste .s-implementacion-cab > p{grid-column:9/13}
-  .s-implementacion-ajuste .s-implementacion-tres{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px var(--gap);margin-top:44px}
-  .s-implementacion-ajuste .s-implementacion-col h3{font-size:var(--step-lead);background:#ff5b14;color:#000;padding:12px 16px 10px;margin-bottom:22px}
-  .s-implementacion-ajuste dl{display:flex;flex-direction:column;gap:14px}
-  .s-implementacion-ajuste dt{font-weight:600}
-  .s-implementacion-ajuste dd{line-height:1.4}
-  .s-implementacion-ajuste .s-implementacion-busquedas{margin-top:30px}
-  .s-implementacion-ajuste .s-implementacion-busquedas svg{width:100%;height:auto;overflow:visible}
-  .s-implementacion-ajuste .s-implementacion-busquedas text{font-family:var(--f-texto);font-weight:600;font-size:18px;fill:#fff}
-  .s-implementacion-ajuste .s-implementacion-busquedas figcaption{font-size:var(--step-small);line-height:1.45;margin-top:8px}
-  @media (max-width:1000px){.s-implementacion-ajuste .s-implementacion-tres{grid-template-columns:1fr}}
-  `,
-  html:`
-  <span class="ancla" data-parada="implementacion-ajuste"></span>
-  <section class="s-implementacion s-implementacion-ajuste s-implementacion-negro s-implementacion-pantalla" data-campo="astillero-negro" aria-labelledby="implementacion-ajuste-titulo">
-    <div class="s-implementacion-cab">
-      <h2 id="implementacion-ajuste-titulo">Conceptos, hiperparámetros y métricas</h2>
-      <p>Lo que se ajusta antes de entrenar, lo que pasa mientras entrena y lo que se mide al final.</p>
-    </div>
-    <div class="s-implementacion-tres">
-      ${LISTAS.map(l => `<div class="s-implementacion-col"><h3>${l.t}</h3><dl>${l.items.map(([a, b]) => `<div><dt>${a}</dt><dd>${b}</dd></div>`).join("")}</dl>${l.extra || ""}</div>`).join("")}
-    </div>
-  </section>`,
-  iniciar(ctx){
-    const { gsap, reducir, raiz } = ctx;
-    const sec = raiz.querySelector(".s-implementacion-ajuste");
-    if (!sec || reducir) return;
-    sec.querySelectorAll(".s-implementacion-col").forEach((col, i) => {
-      gsap.timeline({ scrollTrigger:{ trigger:col, start:"top 82%", toggleActions:"play none none reverse" } })
-        .from(col.querySelector("h3"), { xPercent:-12, opacity:0, duration:.55, ease:"power3.out" }, i * .08)
-        .from(col.querySelectorAll("dl > div"), { x:-26, opacity:0, duration:.5, ease:"power3.out", stagger:.06 }, .12 + i * .08);
-    });
-  }
-});
-
-/* ================================================================== 6. DESPLIEGUE: el momento crítico */
-Clase.seccion({
-  id:"implementacion-despliegue", orden:75,
-  indice:{ texto:"Despliegue y mejora continua", ir:"implementacion-despliegue", nota:"Nube o edge, drift, reentrenamiento y versiones" },
-  creditos:[
-    '«El momento crítico», botadura del crucero Infanta María Teresa en Bilbao, Juan Comba García, La Ilustración Española y Americana, 15 de Septiembre, 1890, dominio público, vía <a href="https://commons.wikimedia.org/wiki/File:1890-09-15,_La_Ilustraci%C3%B3n_Espa%C3%B1ola_y_Americana,_El_momento_cr%C3%ADtico,_entusiasmo_de_los_obreros_al_ver_deslizarse_majestuosamente_el_crucero_hacia_la_r%C3%ADa.jpg">Wikimedia Commons</a>'
-  ],
-  css:`
-  .s-implementacion.s-implementacion-despliegue{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);row-gap:36px;align-content:start;overflow:hidden}
-  .s-implementacion-despliegue h2{grid-column:1/11}
-  .s-implementacion-despliegue .s-implementacion-texto{grid-column:1/6;position:relative;z-index:1;align-self:start}
-  .s-implementacion-despliegue blockquote{font-family:var(--f-display);font-weight:700;font-size:clamp(1.5rem,1.1rem + 1vw,2.25rem);line-height:1.08;letter-spacing:-.025em}
-  .s-implementacion-despliegue .s-implementacion-texto > p{margin-top:24px;max-width:44ch}
-  .s-implementacion-despliegue .s-implementacion-grabado{grid-column:6/13;margin-right:calc(var(--margen) * -1);align-self:start}
-  .s-implementacion-despliegue .s-implementacion-grabado div{overflow:hidden;background:#fff;mix-blend-mode:multiply}
-  .s-implementacion-despliegue .s-implementacion-grabado img{width:100%;height:auto;aspect-ratio:1800/1119;object-fit:cover;transform-origin:30% 70%}
-  .s-implementacion-despliegue .s-implementacion-grabado figcaption{font-size:var(--step-small);line-height:1.45;margin-top:10px;max-width:70ch;padding-right:var(--margen)}
-  @media (max-width:900px){.s-implementacion-despliegue .s-implementacion-texto,.s-implementacion-despliegue .s-implementacion-grabado{grid-column:1/-1}.s-implementacion-despliegue .s-implementacion-grabado{margin-top:32px}}
-  `,
-  html:`
-  <span class="ancla" data-parada="implementacion-despliegue"></span>
-  <section class="s-implementacion s-implementacion-despliegue s-implementacion-concreto s-implementacion-pantalla" data-campo="astillero-concreto" aria-labelledby="implementacion-despliegue-titulo">
-    <h2 id="implementacion-despliegue-titulo">Implementación y despliegue del modelo</h2>
-    <div class="s-implementacion-texto">
-      <blockquote><p>El despliegue (deployment) es el proceso de llevar el modelo del entorno de desarrollo a producción.</p></blockquote>
-      <p>En el astillero, la botadura es el momento crítico: el casco deja la rampa y tiene que flotar solo. Con un modelo pasa igual: lo que funcionaba en el portátil del equipo ahora tiene que responder a usuarios reales, todos los días.</p>
-    </div>
-    <figure class="s-implementacion-grabado">
-      <div><img src="${IMG}botadura-infanta-maria-teresa-1890.jpg" width="1800" height="1119" loading="lazy" decoding="async" alt="Grabado de 1890: el casco del crucero se desliza por la rampa hacia la ría mientras una multitud de obreros corre y celebra con banderas"></div>
-      <figcaption>El momento crítico: botadura del crucero Infanta María Teresa en Bilbao. Dibujo de Juan Comba para La Ilustración Española y Americana, 15 de Septiembre, 1890.</figcaption>
-    </figure>
-  </section>`,
-  iniciar(ctx){
-    const { gsap, reducir, raiz } = ctx;
-    const sec = raiz.querySelector(".s-implementacion-despliegue");
-    if (!sec || reducir) return;
-    const img = sec.querySelector(".s-implementacion-grabado img");
-    gsap.timeline({ scrollTrigger:{ trigger:sec, start:"top 70%", toggleActions:"play none none reverse" } })
-      .from([sec.querySelector("h2"), ...sec.querySelectorAll(".s-implementacion-texto > *")], { y:30, opacity:0, duration:.7, ease:"power3.out", stagger:.09 }, 0)
-      .from(sec.querySelector(".s-implementacion-grabado div"), { clipPath:"inset(0 0 0 100%)", duration:1.1, ease:"power3.inOut" }, .1);
-    /* El casco baja por la rampa: deslizamiento diagonal ligado al scroll */
-    gsap.fromTo(img, { scale:1.14, xPercent:-4, yPercent:-5 }, { scale:1.02, xPercent:2, yPercent:3, ease:"none",
-      scrollTrigger:{ trigger:sec, start:"top bottom", end:"bottom top", scrub:true } });
-  }
-});
-
 /* ================================================================== 7. RUTA DE UNA PREDICCIÓN: nube o edge */
 const CLIENTES = ["ERP", "App móvil", "Dashboard", "Proceso automatizado"];
 const RUTAS = {
@@ -867,6 +538,7 @@ function svgRuta(){
 }
 Clase.seccion({
   id:"implementacion-ruta", orden:76,
+  indice:{ texto:"Despliegue y mejora continua", ir:"implementacion-ruta", nota:"Nube o edge, drift y reentrenamiento" },
   css:`
   .s-implementacion-ruta .s-implementacion-cab h2{grid-column:1/8}
   .s-implementacion-ruta .s-implementacion-cab > p{grid-column:8/13;font-size:var(--step-body);line-height:1.4}
@@ -914,7 +586,7 @@ Clase.seccion({
   <section class="s-implementacion s-implementacion-ruta s-implementacion-azul s-implementacion-pantalla" data-campo="astillero-azul" aria-labelledby="implementacion-ruta-titulo">
     <div class="s-implementacion-cab">
       <h2 id="implementacion-ruta-titulo">La ruta de una predicción</h2>
-      <p>Elijan dónde corre el modelo y sigan el paquete: el sistema pide, la API recibe, el contenedor ejecuta el modelo y la respuesta vuelve a quien la necesita.</p>
+      <p>Desplegar es llevar el modelo del portátil a producción: así viaja una predicción.</p>
     </div>
     <div class="s-implementacion-mando">
       <div class="s-implementacion-grupo">
@@ -1104,10 +776,10 @@ Clase.seccion({
   <section class="s-implementacion s-implementacion-mejora s-implementacion-negro s-implementacion-pantalla" data-campo="astillero-negro" aria-labelledby="implementacion-mejora-titulo">
     <div class="s-implementacion-cab">
       <h2 id="implementacion-mejora-titulo">Mejora continua del sistema de IA</h2>
-      <blockquote><p>Un modelo de IA en producción no es estático. El mundo cambia, los datos cambian y el modelo debe adaptarse.</p></blockquote>
+      <blockquote><p>El mundo cambia, los datos cambian y el modelo debe adaptarse.</p></blockquote>
     </div>
     <div class="s-implementacion-fila">
-      <p class="s-implementacion-contexto">Ejemplo sintético: un modelo de detección de fraude aprendió qué valor de compra es sospechoso. Con la inflación y los clientes nuevos, el valor típico de las compras sube cada mes. Avancen el año y miren qué pasa.</p>
+      <p class="s-implementacion-contexto">Un detector de fraude, mientras las compras suben de valor mes a mes. Datos sintéticos.</p>
       <div class="s-implementacion-cuentas">
         <div class="s-implementacion-dato"><p>Meses bajo el umbral</p><p class="s-implementacion-cifra" data-bajo>0</p></div>
         <div class="s-implementacion-dato"><p>Reentrenamientos</p><p class="s-implementacion-cifra" data-reent>0</p></div>
@@ -1140,10 +812,10 @@ Clase.seccion({
       </figure>
     </div>
     <div class="s-implementacion-veredicto" data-estado="ok" aria-live="polite"><p class="s-implementacion-vt"></p><p class="s-implementacion-vx"></p></div>
-    <p class="s-implementacion-nota s-implementacion-psi">Exactitud (accuracy): porcentaje de compras bien clasificadas. PSI (índice de estabilidad poblacional): compara la distribución del mes con la de entrenamiento; regla práctica: menos de 0,10 estable, de 0,10 a 0,25 cambio moderado, más de 0,25 drift fuerte. Datos sintéticos.</p>
+    <p class="s-implementacion-nota s-implementacion-psi">PSI: menos de 0,10 estable; más de 0,25, drift fuerte.</p>
     <div class="s-implementacion-registro">
       <h3>Registro de versiones</h3>
-      <p>Lo que guardarían MLflow (experimentos y métricas) y DVC (versión exacta de los datos) cada vez que el modelo se reentrena: trazabilidad completa del ciclo.</p>
+      <p>Lo que MLflow y DVC guardan en cada reentrenamiento.</p>
       <table>
         <thead><tr><th scope="col">Versión</th><th scope="col">Entrenada con datos de</th><th scope="col">Datos (DVC)</th><th scope="col">Exactitud en validación</th><th scope="col">Motivo</th></tr></thead>
         <tbody data-registro></tbody>
@@ -1252,59 +924,4 @@ Clase.seccion({
   }
 });
 
-/* ================================================================== 9. LO QUE MANTIENE VIVO UN MODELO */
-const CUATRO = [
-  { t:"Monitoreo del modelo", items:["Detección de data drift: cambia la distribución de los datos", "Model drift: se degrada el desempeño", "Alertas automáticas al superar umbrales", "Dashboards en tiempo real"] },
-  { t:"Re-entrenamiento", items:["Programado: cada N semanas o meses", "Por umbral: cuando la métrica baja del mínimo", "Continuo: pipelines de ML en tiempo real", "Active learning: el modelo solicita etiquetas"] },
-  { t:"Feedback loop", items:["Los usuarios corrigen las predicciones incorrectas", "Los datos de producción alimentan el re-entrenamiento", "A/B testing de versiones del modelo", "Registro de decisiones y resultados reales"] },
-  { t:"Documentación y versionado", items:["MLflow: tracking de experimentos", "DVC: versionado de datos y modelos", "Model cards: descripción del modelo", "Trazabilidad completa del ciclo"] }
-];
-Clase.seccion({
-  id:"implementacion-mantener", orden:78,
-  creditos:[
-    '«Waterdichtmaken van de rompen van drie fluitschepen» (calafateo de los cascos de tres fluyts), Reinier Nooms, publicado por Carel Allard, entre 1650 y 1705, CC0, Rijksmuseum vía <a href="https://commons.wikimedia.org/w/index.php?curid=84469065">Wikimedia Commons</a>'
-  ],
-  css:`
-  .s-implementacion.s-implementacion-mantener{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-content:start}
-  .s-implementacion-mantener .s-implementacion-aguafuerte{grid-column:1/6;margin-left:calc(var(--margen) * -1);align-self:start;position:sticky;top:96px;mix-blend-mode:multiply}
-  .s-implementacion-mantener .s-implementacion-aguafuerte div{background:#fff;overflow:hidden}
-  .s-implementacion-mantener .s-implementacion-aguafuerte img{width:100%;height:auto;max-height:calc(100svh - 230px);aspect-ratio:1.08;object-fit:cover;object-position:24% 62%}
-  .s-implementacion-mantener .s-implementacion-aguafuerte figcaption{font-size:var(--step-small);line-height:1.45;margin-top:10px;padding-left:var(--margen);max-width:60ch}
-  .s-implementacion-mantener .s-implementacion-lado{grid-column:6/13}
-  .s-implementacion-mantener .s-implementacion-lado > p{font-size:var(--step-lead);line-height:1.3;margin-top:20px;max-width:40ch}
-  .s-implementacion-mantener .s-implementacion-cuatro{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:36px var(--gap);margin-top:40px}
-  .s-implementacion-mantener .s-implementacion-cuatro h3{background:#000;color:#fff;padding:12px 16px 10px;margin-bottom:16px}
-  .s-implementacion-mantener .s-implementacion-cuatro ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-  .s-implementacion-mantener .s-implementacion-cuatro li{position:relative;padding-left:22px;line-height:1.4}
-  .s-implementacion-mantener .s-implementacion-cuatro li::before{content:"";position:absolute;left:0;top:.5em;width:10px;height:10px;background:#000}
-  @media (max-width:1000px){.s-implementacion-mantener .s-implementacion-aguafuerte,.s-implementacion-mantener .s-implementacion-lado{grid-column:1/-1;position:relative;top:0}.s-implementacion-mantener .s-implementacion-cuatro{grid-template-columns:1fr}}
-  `,
-  html:`
-  <span class="ancla" data-parada="implementacion-mantener"></span>
-  <section class="s-implementacion s-implementacion-mantener s-implementacion-naranja s-implementacion-pantalla" data-campo="astillero-naranja" aria-labelledby="implementacion-mantener-titulo">
-    <figure class="s-implementacion-aguafuerte">
-      <div><img src="${IMG}nooms-calafateo-de-cascos.jpg" width="1800" height="1049" loading="lazy" decoding="async" alt="Aguafuerte del siglo XVII: tres barcos inclinados de costado en el puerto, con fogatas y hombres en balsas trabajando sobre los cascos"></div>
-      <figcaption>Tres fluyts inclinados de costado para limpiar y sellar el casco. Aguafuerte de Reinier Nooms, publicado por Carel Allard en Ámsterdam, entre 1650 y 1705. Sin ese mantenimiento periódico, los barcos de madera perdían velocidad y se dañaban.</figcaption>
-    </figure>
-    <div class="s-implementacion-lado">
-      <h2 id="implementacion-mantener-titulo">Lo que mantiene vivo un modelo</h2>
-      <p>Un modelo en producción se cuida como un casco en el agua: se vigila, se limpia, se ajusta y se anota cada intervención.</p>
-      <div class="s-implementacion-cuatro">
-        ${CUATRO.map(g => `<div><h3>${g.t}</h3><ul>${g.items.map(t => `<li>${t}</li>`).join("")}</ul></div>`).join("")}
-      </div>
-    </div>
-  </section>`,
-  iniciar(ctx){
-    const { gsap, reducir, raiz } = ctx;
-    const sec = raiz.querySelector(".s-implementacion-mantener");
-    if (!sec || reducir) return;
-    gsap.from(sec.querySelector(".s-implementacion-aguafuerte div"), { clipPath:"inset(0 100% 0 0)", duration:1.1, ease:"power3.inOut",
-      scrollTrigger:{ trigger:sec, start:"top 70%", toggleActions:"play none none reverse" } });
-    sec.querySelectorAll(".s-implementacion-cuatro > div").forEach((g, i) => {
-      gsap.timeline({ scrollTrigger:{ trigger:g, start:"top 86%", toggleActions:"play none none reverse" } })
-        .from(g.querySelector("h3"), { y:24, opacity:0, duration:.5, ease:"power3.out" }, (i % 2) * .1)
-        .from(g.querySelectorAll("li"), { x:-22, opacity:0, duration:.45, ease:"power3.out", stagger:.06 }, .1 + (i % 2) * .1);
-    });
-  }
-});
 })();

@@ -107,7 +107,6 @@ Clase.seccion({
   creditos:[
     "«Wool bales being loaded into the hold of MAGDALENE VINNEN, March 1933», Australian National Maritime Museum, sin restricciones de derechos conocidas, vía <a href=\"https://commons.wikimedia.org/wiki/File:Wool_bales_being_loaded_into_the_hold_of_MAGDALENE_VINNEN,_March_1933_(6958063402).jpg\">Wikimedia Commons</a>. En el acto La carga, recortada y en duotono.",
     "«Antigua Aduana de Barranquilla», Jdvillalobos, <a href=\"https://creativecommons.org/licenses/by/3.0/deed.es\">CC BY 3.0</a>, vía <a href=\"https://commons.wikimedia.org/w/index.php?curid=4233727\">Wikimedia Commons</a>. En el acto La carga, recortada y en duotono.",
-    "«Bill of lading, steamer Benton, St. Louis, July 28, 1890», Missouri History Museum, dominio público, vía <a href=\"https://commons.wikimedia.org/wiki/File:Bill_of_lading,_steamer_Benton,_St._Louis,_July_28,_1890.jpg\">Wikimedia Commons</a>. En el acto La carga, recortada y en duotono."
   ],
   css:`
   .s-evaluacion{--k:#d9c4a0;--k2:#cdb68e;--v:#1e4a2a;--n:#ff6831;--n2:#b3400f;--n3:#8f3510;--cab:104px;--col:calc((100% - 2 * var(--margen) - 11 * var(--gap)) / 12 + var(--gap))}
@@ -250,28 +249,6 @@ Clase.seccion({
   .s-evaluacion .ev-ejes li{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap}
   .s-evaluacion .anual .ev-ejes li{left:calc(var(--i) * 25% + 12.5%)}
   .s-evaluacion .ev-ancla-interna{position:relative;top:-112px}
-  .s-evaluacion .ev-cuentas{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);row-gap:48px;align-items:start}
-  .s-evaluacion .ev-cuentas-izq{grid-column:1 / 6;display:flex;flex-direction:column;gap:40px}
-  .s-evaluacion .ev-cuentas-der{grid-column:7 / 13;display:flex;flex-direction:column;gap:40px}
-  .s-evaluacion .ev-tabla-vpn{display:flex;flex-direction:column;gap:16px}
-  .s-evaluacion .ev-tabla{width:100%;border-collapse:collapse;font-size:var(--step-body);font-variant-numeric:tabular-nums}
-  .s-evaluacion .ev-tabla th,.s-evaluacion .ev-tabla td{padding:9px 10px;text-align:right;font-weight:400;white-space:nowrap}
-  .s-evaluacion .ev-tabla thead th{white-space:normal}
-  .s-evaluacion .ev-tabla th:first-child,.s-evaluacion .ev-tabla td:first-child{text-align:left}
-  .s-evaluacion .ev-tabla thead th{font-weight:600;font-size:var(--step-small);line-height:1.3;vertical-align:bottom}
-  .s-evaluacion .ev-tabla tbody tr:nth-child(odd){background:var(--k2)}
-  .s-evaluacion .ev-tabla tfoot th,.s-evaluacion .ev-tabla tfoot td{background:#000;color:var(--k);font-family:var(--f-display);font-weight:700;font-size:var(--step-lead);letter-spacing:-.02em;padding:12px 10px 9px}
-  .s-evaluacion .ev-tir-linea{font-size:var(--step-body);line-height:1.45}
-  .s-evaluacion .ev-formulas{display:flex;flex-direction:column;gap:16px}
-  .s-evaluacion .ev-formulas dl{display:flex;flex-direction:column;gap:14px;margin:0}
-  .s-evaluacion .ev-formulas dt{font-family:var(--f-display);font-weight:700;font-size:var(--step-lead);letter-spacing:-.02em;line-height:1.05}
-  .s-evaluacion .ev-formulas dd{margin:4px 0 0;font-size:var(--step-body);line-height:1.45}
-  .s-evaluacion .ev-formulas dd span{display:block;font-weight:600;font-variant-numeric:tabular-nums}
-  .s-evaluacion .ev-curso{font-size:var(--step-body);line-height:1.45;background:var(--k2);padding:14px 16px}
-  .s-evaluacion .ev-entregable{background:#000;color:var(--k);padding:26px 28px 28px;display:flex;flex-direction:column;gap:12px}
-  .s-evaluacion .ev-entregable p{font-size:var(--step-lead);line-height:1.3;font-weight:600}
-  .s-evaluacion .ev-flete{margin:0;display:flex;flex-direction:column;gap:12px}
-  .s-evaluacion .ev-flete img{width:100%;height:auto;aspect-ratio:16 / 5}
 
   /* ---------- Pantallas bajas, tabletas y teléfonos: los capítulos dejan de ser fijos */
   @media (max-height:700px) and (min-width:761px), (max-width:1100px){
@@ -283,7 +260,7 @@ Clase.seccion({
     .s-evaluacion .ev-foto,.s-evaluacion .ev-aduana{position:relative;inset:auto;left:auto;width:calc(100% + 2 * var(--margen));margin:0 calc(-1 * var(--margen));height:52svh}
     .s-evaluacion .ev-aduana figcaption{position:relative}
     .s-evaluacion .ev-libro{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .s-evaluacion .ev-grafica.anual,.s-evaluacion .ev-grafica.mensual,.s-evaluacion .ev-cuentas-izq,.s-evaluacion .ev-cuentas-der{grid-column:1 / -1}
+    .s-evaluacion .ev-grafica.anual,.s-evaluacion .ev-grafica.mensual{grid-column:1 / -1}
     .s-evaluacion .ev-graficas{row-gap:40px}
   }
   @media (max-width:760px){
@@ -440,43 +417,6 @@ Clase.seccion({
         <ol class="ev-ejes">${ejesMes}</ol>
       </figure>
     </div>
-    <span class="ancla ev-ancla-interna" data-parada="evaluacion-formulas" style="position:relative;top:72px"></span>
-    <div class="ev-cuentas" style="padding-top:112px">
-      <div class="ev-cuentas-izq">
-      <div class="ev-tabla-vpn">
-        <h3>Así se calcula el VPN</h3>
-        <table class="ev-tabla">
-          <caption class="solo-lector">VPN a 3 años con tasa del 12%, con los valores del manifiesto</caption>
-          <thead><tr><th scope="col">Año</th><th scope="col">Flujo de caja</th><th scope="col">Factor 1 / (1,12)<sup>t</sup></th><th scope="col">Valor presente</th></tr></thead>
-          <tbody id="evaluacion-tabla"></tbody>
-          <tfoot><tr><th scope="row" colspan="3">VPN</th><td id="evaluacion-tabla-vpn"></td></tr></tfoot>
-        </table>
-        <p class="ev-tir-linea" id="evaluacion-tir-linea"></p>
-      </div>
-      <div class="ev-entregable">
-        <h3>Lo que entregan</h3>
-        <p>Estimar el CAPEX total y el OPEX anual. Calcular el beneficio anual esperado. Con esos datos: ROI, payback y VPN a 3 años con tasa del 12%. Pueden usar supuestos razonables.</p>
-      </div>
-      </div>
-      <div class="ev-cuentas-der">
-      <div class="ev-formulas">
-        <h3>Las fórmulas, tal cual</h3>
-        <dl>
-          <div><dt>CAPEX total</dt><dd>Suma de los cinco rubros de inversión.<span id="evaluacion-f-capex"></span></dd></div>
-          <div><dt>Beneficio neto anual (BN)</dt><dd>BN = Beneficio anual − OPEX anual<span id="evaluacion-f-bn"></span></dd></div>
-          <div><dt>ROI a 3 años</dt><dd>ROI = (BN × 3 − CAPEX) / CAPEX × 100<span id="evaluacion-f-roi"></span></dd></div>
-          <div><dt>Payback en meses</dt><dd>Payback = CAPEX / BN × 12<span id="evaluacion-f-payback"></span></dd></div>
-          <div><dt>VPN a 3 años al 12%</dt><dd>VPN = −CAPEX + Σ BN / (1,12)<sup>t</sup>, con t = 1, 2, 3<span id="evaluacion-f-vpn"></span></dd></div>
-          <div><dt>TIR</dt><dd>La tasa r que hace −CAPEX + Σ BN / (1 + r)<sup>t</sup> = 0. Se busca por bisección: se parte el intervalo de tasas a la mitad hasta encontrar el cero.<span id="evaluacion-f-tir"></span></dd></div>
-        </dl>
-        <p class="ev-curso">Fórmulas del documento del curso: ROI = (Beneficio − CAPEX) / CAPEX × 100 y Payback = CAPEX / Ahorro anual × 12 meses. En esta calculadora, Beneficio es el beneficio neto de los 3 años y Ahorro anual es el beneficio neto de un año.</p>
-      </div>
-      <figure class="ev-flete">
-        <img src="${IMG}ev-flete.jpg" width="2400" height="750" loading="lazy" decoding="async" alt="Cuenta de flete impresa en 1890, con el grabado de un vapor de rueda, el nombre Steamer Benton y columnas de peso, tarifa, flete, cargos y total.">
-        <figcaption class="ev-pie">Cuenta de flete del vapor Benton, St. Louis, 28 de Julio, 1890: peso, tarifa, flete, cargos y total. La misma cuenta, ciento treinta y seis años antes. Missouri History Museum.</figcaption>
-      </figure>
-      </div>
-    </div>
   </section>
   `,
   iniciar(ctx){
@@ -623,21 +563,6 @@ Clase.seccion({
       mensual.setAttribute("aria-label", `Saldo acumulado mes a mes: empieza en ${cop(-r.capex)}, ${resumen} y termina el mes 36 en ${cop(s36)}.`);
     }
 
-    /* ---------- tabla del VPN y fórmulas con los números */
-    const tabla = el("tabla");
-    function pintarCuentas(r){
-      tabla.innerHTML = r.flujos.map((f, t) => `<tr><th scope="row">${t}</th><td>${cop(f)}</td><td>${num(r.factores[t], 4)}</td><td>${cop(r.vp[t])}</td></tr>`).join("");
-      el("tabla-vpn").textContent = cop(r.vpn);
-      const tt = textoTir(r);
-      el("tir-linea").textContent = tt ? `TIR: ${tt.toLowerCase()}.` : `TIR: ${pct(r.tir * 100, 1)}. A esa tasa, el VPN da cero; ${r.tir > TASA ? "como supera el 12%, el proyecto rinde más que la tasa exigida." : r.tir < TASA ? "como no llega al 12%, el proyecto rinde menos que la tasa exigida." : "es justo la tasa exigida."}`;
-      const v = r.v;
-      el("f-capex").textContent = `${RUBROS.map(x => cop(v[x.id])).join(" + ")} = ${cop(r.capex)}`;
-      el("f-bn").textContent = `${cop(v.beneficio)} − ${cop(v.opex)} = ${cop(r.bn)}`;
-      el("f-roi").textContent = isNaN(r.roi) ? "Sin CAPEX no hay ROI que calcular." : `(${cop(r.bn * ANIOS)} − ${cop(r.capex)}) / ${cop(r.capex)} × 100 = ${fmtRoi(r.roi)}`;
-      el("f-payback").textContent = r.capex <= 0 ? "No hay inversión que recuperar." : !isFinite(r.payback) ? "El beneficio neto no es positivo: la inversión no se recupera." : `${cop(r.capex)} / ${cop(r.bn)} × 12 = ${num(r.payback, 1)} meses`;
-      el("f-vpn").textContent = `${cop(-r.capex)} + ${r.vp.slice(1).map(x => cop(x)).join(" + ")} = ${cop(r.vpn)}`;
-      el("f-tir").textContent = tt ? tt + "." : `r = ${pct(r.tir * 100, 1)}`;
-    }
 
     /* ---------- recalcular todo */
     let tAnuncio = 0;
@@ -651,7 +576,6 @@ Clase.seccion({
       pintarCifras(r, animar && !reducir);
       pintarSello(r, animar && !reducir);
       pintarGraficas(r, animar && !reducir && graficasVivas, false);
-      pintarCuentas(r);
       clearTimeout(tAnuncio);
       tAnuncio = setTimeout(() => {
         const tt = textoTir(r), tp = textoPayback(r);
@@ -749,13 +673,6 @@ Clase.seccion({
     const tlG = gsap.timeline({ scrollTrigger:{ trigger:ancla("evaluacion-flujo"), start:"top 70%", toggleActions:"play none none reverse" } });
     mascara(tlG, ".ev-flujo h2 .in");
     subir(tlG, qa(".ev-flujo-cab p, .ev-grafica figcaption"), .2);
-    const tlK = gsap.timeline({ scrollTrigger:{ trigger:ancla("evaluacion-formulas"), start:"top 75%", toggleActions:"play none none reverse" } });
-    subir(tlK, qa(".ev-tabla-vpn > h3, .ev-formulas > h3"), 0);
-    imprimir(tlK, qa(".ev-tabla tr"), .15, .08, .34, 8);
-    subir(tlK, qa(".ev-formulas dl > div, .ev-curso"), .25, .07);
-    const tlE = gsap.timeline({ scrollTrigger:{ trigger:q(".ev-entregable"), start:"top 80%", toggleActions:"play none none reverse" } });
-    tlE.fromTo(q(".ev-entregable"), { clipPath:"inset(0% 100% 0% 0%)" }, { clipPath:"inset(0% 0% 0% 0%)", duration:.7, ease:"steps(10)", clearProps:"clipPath" }, 0)
-       .fromTo(q(".ev-flete img"), { clipPath:"inset(0% 0% 0% 100%)" }, { clipPath:"inset(0% 0% 0% 0%)", duration:1, ease:"power3.out", clearProps:"clipPath" }, .1);
   }
 });
 })();

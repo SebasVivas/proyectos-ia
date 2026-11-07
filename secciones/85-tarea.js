@@ -57,8 +57,7 @@ Clase.seccion({
   orden:85,
   indice:{ texto:"Tumba tu propia idea", ir:"tarea", nota:"La tarea: las 3 preguntas más difíciles de tu proyecto" },
   creditos:[
-    `<a href="https://commons.wikimedia.org/wiki/File:Allenby_Bridge_under_test_LOC_matpc.03922.jpg">«Allenby Bridge under test»</a>, Matson Collection, Library of Congress, entre 1934 y 1939. Dominio público, vía Wikimedia Commons. Pasada a dos tintas.`,
-    `<a href="https://commons.wikimedia.org/wiki/File:Fremantle_1926_railway_bridge_flood_damage_weight_testing.tif">«Fremantle 1926 railway bridge flood damage weight testing»</a>, 1926. Dominio público, vía Wikimedia Commons. Recortada y pasada a dos tintas.`
+    `<a href="https://commons.wikimedia.org/wiki/File:Allenby_Bridge_under_test_LOC_matpc.03922.jpg">«Allenby Bridge under test»</a>, Matson Collection, Library of Congress, entre 1934 y 1939. Dominio público, vía Wikimedia Commons. Pasada a dos tintas.`
   ],
   css:`
   .s-tarea h2,.s-tarea h3{color:inherit}
@@ -88,13 +87,14 @@ Clase.seccion({
   .s-tarea .tr-bq small{font-weight:600;font-size:var(--step-small);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .s-tarea .tr-suelto{position:absolute;z-index:3;border-color:#fff}
   .s-tarea .tr-piso{position:absolute;left:calc(-1 * var(--margen));right:-24px;bottom:0;height:14px;background:#000}
-  .s-tarea .tr-to-texto{grid-column:7/13;display:flex;flex-direction:column;gap:16px}
+  .s-tarea .tr-to-texto{grid-column:7/13;display:flex;flex-direction:column;gap:12px}
   .s-tarea .tr-to-texto h2{font-size:var(--step-head)}
   .s-tarea .tr-to-texto > p{line-height:1.45;max-width:46ch}
   .s-tarea .tr-ctrl{display:flex;gap:12px;flex-wrap:wrap}
   .s-tarea .tr-estado{font-weight:600;min-height:1.5em}
+  .s-tarea .tr-resultado:empty{display:none}
   .s-tarea .tr-preguntas{list-style:none;display:flex;flex-direction:column;gap:8px}
-  .s-tarea .tr-preguntas li{position:relative;padding:10px 14px 10px 18px;background:#fff;transition:background-color .3s,color .3s}
+  .s-tarea .tr-preguntas li{position:relative;padding:6px 14px 6px 18px;background:#fff;transition:background-color .3s,color .3s}
   .s-tarea .tr-preguntas li::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:#ff6831}
   .s-tarea .tr-preguntas li.salio{background:#000;color:#fff}
   .s-tarea .tr-preguntas strong{font-weight:600}
@@ -105,39 +105,19 @@ Clase.seccion({
   .s-tarea .tr-final[hidden]{display:none}
   .s-tarea .tr-resultado{font-weight:600;min-height:1.5em}
   .s-tarea .boton:focus-visible{outline-color:#000}
+  .s-tarea .tr-entrega{display:flex;align-items:center;gap:8px 16px;flex-wrap:wrap}
+  .s-tarea .tr-entrega p{line-height:1.4;max-width:40ch}
+  .s-tarea .tr-entrega strong{font-weight:600}
+  .s-tarea #tarea-copiada{font-size:var(--step-small);min-height:1.4em;flex-basis:100%}
 
-  /* ---------- La consigna */
-  .s-tarea.tr-consigna{background:#000;color:#fff;padding:112px var(--margen) 0}
-  .s-tarea .tr-co-cab{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--gap);align-items:end}
-  .s-tarea .tr-co-cab h2{grid-column:1/10;font-size:var(--step-head)}
-  .s-tarea .tr-copiar{grid-column:10/13;justify-self:end;display:flex;flex-direction:column;align-items:flex-end;gap:10px;text-align:right}
-  .s-tarea .tr-copiar p{font-size:var(--step-small);line-height:1.4;min-height:1.4em;max-width:30ch}
-  .s-tarea .tr-copiar .boton:focus-visible{outline-color:#fff}
-  .s-tarea .tr-co-cuerpo{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--gap);margin-top:40px}
-  .s-tarea .tr-co-consigna{grid-column:1/6}
-  .s-tarea .tr-co-entrega{grid-column:7/13}
-  .s-tarea .tr-co-cuerpo h3{font-size:var(--step-lead);letter-spacing:-.02em;line-height:1.05}
-  .s-tarea .tr-co-consigna ul{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:14px}
-  .s-tarea .tr-co-consigna li{position:relative;padding-left:24px;line-height:1.45}
-  .s-tarea .tr-co-consigna li::before{content:"";position:absolute;left:0;top:.5em;width:10px;height:10px;background:#ff6831}
-  .s-tarea .tr-co-entrega dl{margin-top:18px;display:flex;flex-direction:column;gap:18px}
-  .s-tarea .tr-co-entrega dt{font-family:var(--f-display);font-weight:700;font-size:var(--step-lead);letter-spacing:-.02em;line-height:1.05;color:#ff6831}
-  .s-tarea .tr-co-entrega dd{margin-top:6px;line-height:1.45;max-width:52ch}
-  .s-tarea .tr-co-pie{margin:48px calc(-1 * var(--margen)) 0;background:#ff6831;color:#000;padding:28px var(--margen);display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--gap);align-items:center}
-  .s-tarea .tr-co-formato{grid-column:1/6;font-family:var(--f-display);font-weight:700;font-size:var(--step-head);letter-spacing:-.04em;line-height:.95}
-  .s-tarea .tr-co-proxima{grid-column:6/13;font-size:var(--step-lead);line-height:1.3}
-  .s-tarea .tr-co-proxima strong{font-weight:600}
-  .s-tarea .tr-co-foto{position:relative;margin:0 calc(-1 * var(--margen));height:44svh;min-height:260px;overflow:hidden;background:#ff6831}
-  .s-tarea .tr-co-foto img{position:absolute;left:0;top:-6%;width:100%;height:112%;object-fit:cover;object-position:60% 58%}
-  .s-tarea .tr-co-foto-pie{background:#000;color:#fff;font-size:var(--step-small);line-height:1.4;padding:12px 0 40px}
-
+  @media (min-width:901px) and (max-height:800px){
+    .s-tarea .tr-preguntas span{display:none}
+  }
   @media (max-width:900px){
-    .s-tarea .tr-ap-titulo,.s-tarea .tr-ap-texto,.s-tarea .tr-escena,.s-tarea .tr-to-texto,.s-tarea .tr-co-cab h2,.s-tarea .tr-copiar,.s-tarea .tr-co-consigna,.s-tarea .tr-co-entrega,.s-tarea .tr-co-formato,.s-tarea .tr-co-proxima{grid-column:1/-1;grid-row:auto}
+    .s-tarea .tr-ap-titulo,.s-tarea .tr-ap-texto,.s-tarea .tr-escena,.s-tarea .tr-to-texto{grid-column:1/-1;grid-row:auto}
     .s-tarea .tr-ap-foto{grid-column:1/-1;grid-row:auto;margin:0 calc(-1 * var(--margen));min-height:280px}
     .s-tarea.tr-apertura{height:auto;min-height:100svh}
     .s-tarea .tr-escena{--w:clamp(150px,40vw,260px);margin-bottom:32px}
-    .s-tarea .tr-copiar{justify-self:start;align-items:flex-start;text-align:left;margin-top:16px}
-    .s-tarea .tr-co-entrega{margin-top:32px}
   }
   `,
   html:`
@@ -178,36 +158,12 @@ Clase.seccion({
         </div>
       </div>
       <p class="tr-resultado" id="tarea-resultado" aria-live="polite"></p>
-    </div>
-  </section>
-
-  <span class="ancla" data-parada="tarea-consigna"></span>
-  <section class="s-tarea tr-consigna" data-campo="negro" aria-labelledby="tarea-consigna-titulo">
-    <div class="tr-co-cab">
-      <h2 id="tarea-consigna-titulo">Las 3 preguntas más difíciles de tu proyecto</h2>
-      <div class="tr-copiar">
+      <div class="tr-entrega">
+        <p><strong>Entrega:</strong> 1 página por proyecto, para la próxima sesión.</p>
         <button class="boton" type="button" id="tarea-copiar">Copiar la tarea</button>
-        <p id="tarea-copiada" aria-live="polite">El texto completo, listo para pegar en la plataforma del curso.</p>
+        <p id="tarea-copiada" aria-live="polite"></p>
       </div>
     </div>
-    <div class="tr-co-cuerpo">
-      <div class="tr-co-consigna">
-        <h3>La consigna</h3>
-        <ul>${CONSIGNA.map(c => `<li>${c}</li>`).join("")}</ul>
-      </div>
-      <div class="tr-co-entrega">
-        <h3>Por cada pregunta, entrega</h3>
-        <dl>${ENTREGA.map(e => `<div><dt>${e.t}</dt><dd>${e.d}</dd></div>`).join("")}</dl>
-      </div>
-    </div>
-    <div class="tr-co-pie">
-      <p class="tr-co-formato">1 página, por proyecto</p>
-      <p class="tr-co-proxima"><strong>Para la próxima sesión:</strong> ${PROXIMA}</p>
-    </div>
-    <figure class="tr-co-foto-fig">
-      <div class="tr-co-foto" data-campo="naranja"><img src="img/tarea/assets/puente-fremantle.jpg" width="1600" height="1015" loading="lazy" decoding="async" alt="Fotografía de 1926 a dos tintas: dos locomotoras de vapor sobre un puente ferroviario de madera, durante una prueba de peso."></div>
-      <figcaption class="tr-co-foto-pie">Prueba de peso del puente ferroviario de Fremantle, Australia, después de la inundación de 1926.</figcaption>
-    </figure>
   </section>
   `,
   iniciar(ctx){
@@ -287,7 +243,7 @@ Clase.seccion({
 
     /* ======== Copiar la tarea para la plataforma del curso ======== */
     const aviso = $("#tarea-copiada");
-    const listo = () => { aviso.textContent = "Copiada. Ya pueden pegarla en la plataforma del curso."; };
+    const listo = () => { aviso.textContent = "Copiada, con la consigna completa. Ya pueden pegarla en la plataforma del curso."; };
     const respaldo = () => {
       const t = document.createElement("textarea");
       t.value = TEXTO_PLANO; t.setAttribute("readonly", ""); t.style.position = "fixed"; t.style.left = "-9999px";
@@ -318,12 +274,6 @@ Clase.seccion({
       .from(torre.querySelectorAll(".tr-nivel"), { y:-160, opacity:0, duration:.55, ease:"bounce.out", stagger:.06 })
       .add(() => temblor(.6))
       .from(to.querySelectorAll(".tr-to-texto > *"), { x:30, opacity:0, duration:.6, ease:"power3.out", stagger:.06 }, .2);
-
-    const co = $(".tr-consigna");
-    gsap.from(co.querySelectorAll(".tr-co-consigna li, .tr-co-entrega dl > div"), { y:26, opacity:0, duration:.6, ease:"power3.out", stagger:.07,
-      scrollTrigger:{ trigger:co, start:"top 65%", toggleActions:"play none none reverse" } });
-    gsap.fromTo(co.querySelector(".tr-co-foto img"), { yPercent:-5 }, { yPercent:5, ease:"none",
-      scrollTrigger:{ trigger:co.querySelector(".tr-co-foto"), start:"top bottom", end:"bottom top", scrub:true } });
   }
 });
 })();
